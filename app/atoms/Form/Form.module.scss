@@ -1,0 +1,143 @@
+@use '@styles/settings' as *;
+@use './Form-vars' as *;
+@use './Form-extends' as *;
+@use './Form-mixins' as *;
+
+.form {
+  &__label {
+    display: block;
+    width: 100%;
+
+    @each $variant in (dark, light) {
+      &.is-#{'' + $variant} {
+        @include form-error(#{$variant});
+
+        @include mq-hover {
+          @include form-error(#{$variant});
+        }
+      }
+
+    }
+
+    @include mq-hover {
+      cursor: pointer;
+    }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    border-style: solid;
+    appearance: none;
+
+    @extend %type-input;
+    @include user-select(true);
+    @include sizing('border-width', size(deep-get($inputs, border, width)));
+    @include sizing('padding', size(4));
+
+    @each $variant in (dark, light) {
+      &.is-#{'' + $variant} {
+        background-color: deep-get($inputs, $variant, bg);
+        border-color: deep-get($inputs, $variant, border);
+        color: deep-get($inputs, $variant, color);
+
+        &::placeholder {
+          color: deep-get($inputs, $variant, color);
+        }
+
+        @include form-error(#{$variant}, true);
+
+        @include mq-hover {
+          @include form-error(#{$variant}, true);
+
+          @each $state in (hover, focus) {
+            &:#{'' + $state} {
+              background-color: deep-get($inputs, $variant, hover, bg);
+              border-color: deep-get($inputs, $variant, hover, border);
+              color: deep-get($inputs, $variant, hover, color);
+
+              &::placeholder {
+                color: deep-get($inputs, $variant, hover, color);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.is-textarea {
+      overflow: auto;
+      resize: vertical;
+
+      @include sizing('min-height', size(50));
+    }
+
+    &::placeholder {
+      @extend %type-input;
+      @include transition('color');
+    }
+
+    @include mq-hover {
+      cursor: pointer;
+
+      @include transition('color, background-color, border-color');
+    }
+
+    &:disabled {
+      opacity: .5;
+
+      @include disable(true);
+    }
+  }
+
+  &__select {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    @include mq-hover {
+      cursor: pointer;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      transform: translateY(-35%);
+
+      @include disable(true);
+      @include sizing('right', size(6));
+      @include sizing('border-top-width', size(deep-get($inputs, select-arrow, border-top-width)));
+      @include sizing('border-right-width', size(deep-get($inputs, select-arrow, border-right-width)));
+      @include sizing('border-left-width', size(deep-get($inputs, select-arrow, border-left-width)));
+    }
+
+    @each $variant in (dark, light) {
+      &.is-#{'' + $variant}:before {
+        border-top-color: deep-get($inputs, $variant, select-arrow);
+      }
+    }
+  }
+
+  &__radio {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    @include sizing('gap', size(2));
+  }
+
+  &__checkbox {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    @include sizing('gap', size(2));
+  }
+}

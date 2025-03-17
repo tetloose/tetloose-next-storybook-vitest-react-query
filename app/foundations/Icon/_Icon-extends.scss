@@ -1,0 +1,22 @@
+@use '@styles/settings' as *;
+@use './Icon-vars' as *;
+
+@each $breakpoint in vars(settings, breakpoints) {
+  %type-icon-#{$breakpoint} {
+    @include sizing('font-size', deep-get($icons, #{$breakpoint}));
+  }
+}
+
+%f-icons {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  font-family: icons, sans-serif;
+  line-height: 1;
+  text-transform: none;
+  text-rendering: auto;
+  speak: never;
+
+  @include font-smoothing;
+  @extend %f-regular;
+}

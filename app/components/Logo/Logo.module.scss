@@ -1,0 +1,21 @@
+@use '@styles/settings' as *;
+
+.logo {
+  display: block;
+  width: 100%;
+
+  @include mq-hover {
+    cursor: pointer;
+
+    @include transition('all');
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &:focus,
+    &:hover {
+      opacity: .8;
+    }
+  }
+}

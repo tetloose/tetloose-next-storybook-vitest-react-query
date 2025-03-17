@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Foundations/Icon' />
+
+# Icon
+
+The **Icon** component is a flexible visual element that renders an icon using a native `<i>` element. It supports customisable sizes, colours, and additional modifiers for further styling. The icon to display is determined by the `name` prop.
+
+## Usage
+
+```tsx
+import { Icon } from '@foundations/Icon/Icon.component'
+```
+
+```tsx
+  <Icon
+    name={'happy'}
+    color={'dark'}
+    size={'sml'}
+  />
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the component's base classes.
+
+### name
+
+- Type: `IconNames ('happy' | 'angry')`
+- Default: None
+- Description: Specifies the icon to be rendered. The component uses this prop to determine which icon style to display.
+
+### size
+
+- Type: `string`
+- Default: 'med'
+- Description: Determines the size of the icon. The default size is 'med', but other sizes can be applied via CSS classes.
+
+### color
+
+- Type: `string`
+- Default: None
+- Description: Applies a colour styling to the icon. This prop corresponds to a CSS class that sets the icon colour.
+
+### ...rest
+
+- Type: `Additional native HTML attributes for the <i> element.`
+- Default: None
+- Description: Any extra attributes provided will be passed to the underlying `<i>` element, allowing further customisation.
+
+# How to update
+
+The icons are located in `public/assets/icons`.
+
+1. Go to [Icomoon](https://icomoon.io/) and load the `public/assets/icons/selection.json`
+2. Sometimes icons have background colors. Click the icon, deselect the background color, and align it with the grid. Give it a readable name; Figma often names them oddly.
+3. Once the icons are updated, select them in the pack using the icons at the top. Then, click the "Generate Font" button at the bottom right to download the font.
+4. Replace icon `ttf / svg / woff` and `selection.json` in `public/assets/icons`
+5. Copy the new class names from the stylesheet they give you, to `src/foundations/Icon/Icon.module.scss`
+6. Remove any left over files from zip

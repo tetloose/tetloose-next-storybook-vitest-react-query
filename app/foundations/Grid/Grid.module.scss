@@ -1,0 +1,15 @@
+@use '@styles/settings' as *;
+
+.grid {
+  display: grid;
+  width: 100%;
+
+  @extend %height;
+  @extend %bg;
+
+  &__item {
+    min-height: 100%;
+
+    @extend %bg;
+  }
+}

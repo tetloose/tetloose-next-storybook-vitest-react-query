@@ -1,0 +1,123 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Documentation/Colors' />
+
+# Colors
+
+This documentation explains the color settings and utilities used in the project. It covers how to retrieve colors from the Sass map and how to apply color properties using a CSS extend.
+
+## Colors Settings
+
+The `colors.scss` file defines a Sass function and a color map to centralize your color definitions.
+
+See: `src/styles/settings/colors.scss`
+
+### Color Function
+
+See: `src/styles/settings/colors.scss`
+
+```scss
+@function color($name, $variant: null) {
+  @if $variant {
+    @return map.get(map.get($colors, $name), $variant);
+  } @else {
+    @return map.get($colors, $name);
+  }
+}
+```
+
+## Usage
+
+`background-color: color(default, dark);`
+
+### Color Object
+
+```scss
+$dark: #000;
+$light: #fff;
+$colors: (
+  default: (
+    dark: $dark,
+    light: $light
+  )
+);
+```
+
+### Extend the colors
+
+See: `src/styles/extends/color.scss`, to extend a color via a class:
+
+```scss
+%color {
+  @each $color, $value in map.get($colors, default) {
+    &.color-#{$color} {
+      color: color(default, $color);
+    }
+  }
+}
+```
+
+## Default Colors
+
+Default colors are used primarily for Typography elements (font color / link color) and background colors.
+
+If you add a new Default color make sure to update the types related to that color in: `src/global/global.types.ts`:
+
+```
+export type Color = 'dark' | 'light'
+```
+
+For example if you were to add a new default color e.g. `Blue`.
+
+`src/styles/settings/colors.scss`
+
+```
+$colors: (
+  default: (
+    dark: $dark,
+    light: $light,
+    blue: $blue <---
+  ),
+```
+
+This will generate new class names:
+
+- `.color-blue` -> `src/styles/extends/color.scss`
+- `.bg-blue` -> `src/styles/extends/bg.scss`
+
+Update the types: `src/global/global.types.ts`
+
+```
+export type Color = 'dark' | 'light' | 'blue'
+```
+
+You can then use:
+
+`<Typography color={'blue'} />`
+
+Each bg color requires a css selection color, `::selection {}` as we are auto generating background colors. Set a new selection color in `src/styles/settings/colors.scss`.
+
+```
+$colors: (
+  default: (
+    dark: $dark,
+    light: $light,
+    blue: $blue
+  ),
+  selection: (
+    dark: (
+      bg: $light,
+      color: $dark
+    ),
+    light: (
+      bg: $dark,
+      color: $light
+    ),
+    blue: ( <---
+      bg: $dark,
+      color: $light
+    )
+  ),
+```
+
+See: `src/styles/extends/bg.scss` for selection generation.

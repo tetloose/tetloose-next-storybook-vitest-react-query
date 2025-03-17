@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Workflow" />
+
+# Workflow
+
+## Git
+
+Use git flow, e.g:
+
+```bash
+git checkout develop
+git pull
+git checkout -b feature/feature-name
+git add --a; git commit -m 'Describe your changes'; git push;
+
+git checkout develop
+git pull
+git checkout -b bug/ticket-id-short-name
+git add --a; git commit -m 'Describe your changes'; git push;
+
+git checkout develop
+git pull
+git checkout -b release/version-id
+git add --a; git commit -m 'Release - version id'; git push;
+```
+
+## Development structure
+
+1. Component Development
+2. Component Developer QA
+3. Design QA
+4. Deploy to QA Staging
+5. Functional QA
+6. Deploy to Release Branch
+
+## Channel updates
+
+### Component Developer QA
+
+Once you have committed your work and raised a **pr**, use the channel structure to notify a reviewer.
+
+```
+PR: name of pr
+
+URL: url to pr
+
+Description of PR (optional)
+
+Assigned: @user-name1 @user-name2 @user-name3
+```
+
+### Design QA
+
+Once your work has been merged, use the channel structure to notify QA.
+
+```
+PR: Ticket Name
+
+URL: url to ticket
+
+Description of Ticket (optional)
+
+Assigned: @qa-name1 @qa-name2 @qa-name3
+```

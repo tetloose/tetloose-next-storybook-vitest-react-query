@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Foundations/Spacer' />
+
+# Spacer
+
+The **Spacer** component is a utility component for applying responsive spacing to its content. It renders as a native `<span>` element and utilises breakpoint utilities to apply padding, margin, and display properties through custom CSS classes. This component is ideal for controlling layout spacing consistently across your application.
+
+## Usage
+
+```tsx
+import { Spacer } from '@foundations/Spacer/Spacer.component'
+```
+
+```tsx
+  <Spacer display={{ default: 'block' }} padding={{ default: 10 }} margin={{ default: 10 }}>
+    {children}
+  </Spacer>
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the component's base classes.
+
+### display
+
+- Type: `BreakpointDisplay`
+- Default: None
+- Description: Responsive display settings applied via breakpoint utilities. Controls the display property (e.g. block, inline-block) across different breakpoints.
+
+### margin
+
+- Type: `BreakpointSpacers`
+- Default: None
+- Description: Sets the margin spacing for the component using responsive values. The margin can be defined for different breakpoints.
+
+### padding
+
+- Type: `BreakpointSpacers`
+- Default: None
+- Description: Sets the padding spacing for the component using responsive values. The padding can be defined for different breakpoints.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Child elements to be rendered inside the Spacer component.
+
+### ...rest
+
+- Type: `Additional native HTML attributes`
+- Default: None
+- Description: Any extra HTML attributes provided will be passed to the underlying `<span>` element.

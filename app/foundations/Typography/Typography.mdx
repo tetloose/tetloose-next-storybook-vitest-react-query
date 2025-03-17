@@ -1,0 +1,118 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Foundations/Typography' />
+
+# Typography
+
+The **Typography** component is a versatile text component that allows you to render content with custom styling, responsive behaviour, and advanced typography options. It supports a wide range of HTML tags and integrates with the `Spacer` component for handling spacing. When the `richText` prop is provided, the component renders using the `RichText` component to display complex HTML content.
+
+## Usage
+
+```tsx
+import { Typography } from '@foundations/Typography/Typography.component'
+```
+
+```tsx
+  <Typography
+    tag={'h1'}
+    size={'h1'}
+    text={'H1'}
+    padding={{ default: 5 }}
+  />
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the component's base classes.
+
+### tag
+
+- Type: `'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'em' | 'label' | 'time' | 'ul' | 'ol' | 'li'`
+- Default: `'span'`
+- Description: The HTML tag to render. This determines the semantic meaning and default styling of the text element.
+
+### padding
+
+- Type: `Spacers`
+- Default: None
+- Description: Spacing applied to the component via the Spacer wrapper, controlling internal padding.
+
+### margin
+
+- Type: `Spacers`
+- Default: None
+- Description: Margin applied around the component via the Spacer wrapper.
+
+### size
+
+- Type: `'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body-xxlrg' | 'body-xlrg' | 'body-lrg' | 'body-med' | 'body-sml'`
+- Default: None
+- Description: Defines the text size and corresponding typography styles.
+
+### linkVariant
+
+- Type: `Color`
+- Default: `'dark'`
+- Description: Determines the link variant colour when the text is rendered as a link. It is applied to the link-color styling.
+
+### color
+
+- Type: `Color`
+- Default: `'dark'`
+- Description: Specifies the text colour, applied via a corresponding CSS class.
+
+### fontWeight
+
+- Type: `'light' | 'regular' | 'medium' | 'bold'`
+- Default: None
+- Description: Sets the font weight for the text.
+
+### fontStyle
+
+- Type: `'italic' | 'oblique'`
+- Default: None
+- Description: Sets the font style for the text.
+
+### textTransform
+
+- Type: `'capitalize' | 'uppercase' | 'lowercase'`
+- Default: None
+- Description: Transforms the text according to the specified value.
+
+### whiteSpace
+
+- Type: `BreakpointWhiteSpace`
+- Default: None
+- Description: Controls how white space is handled in the text, with responsive options.
+
+### textAlign
+
+- Type: `BreakpointTextAlign`
+- Default: None
+- Description: Sets the text alignment with responsive breakpoint options.
+
+### text
+
+- Type: `string`
+- Default: None
+- Description: The plain text content to be rendered.
+
+### richText
+
+- Type: `string`
+- Default: None
+- Description: If provided, the component renders rich HTML content using the RichText component.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Additional child elements to be rendered within the component.
+
+### ...rest
+
+- Type: `Additional native HTML attributes`
+- Default: None
+- Description: Any extra attributes provided will be passed to the rendered HTML element.

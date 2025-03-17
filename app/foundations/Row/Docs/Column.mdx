@@ -1,0 +1,109 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Foundations/Row/Column' />
+
+## Usage
+
+```tsx
+import { Column } from '@foundations/Column/Column.component'
+```
+
+```tsx
+  <Column>
+    {children}
+  </Column>
+```
+
+## Column
+
+The **Column** component is designed to be used as a child within a Row. It provides responsive layout options such as gap, width, height, padding, and more to control the spacing and positioning of its content.
+
+### modifiers
+
+- Type: `string[]`
+- Default: []
+- Description: Additional CSS classes for custom styling, appended to the component's base classes.
+
+### tag
+
+- Type: `string`
+- Default: 'div'
+- Description: The HTML element tag used to render the Column. Defaults to a `<div>`.
+
+### bg
+
+- Type: `string`
+- Default: None
+- Description: Specifies the background colour of the Column via a corresponding CSS class.
+
+### border & borderColor
+
+- Type: `As defined by the Border type (e.g. number and string)`
+- Default: None
+- Description: Defines the border style and colour. These properties work together to generate the necessary CSS classes.
+
+### display
+
+- Type: `BreakpointDisplay`
+- Default: None
+- Description: Responsive display settings applied to the Column.
+
+### align
+
+- Type: `BreakpointFlexAlign`
+- Default: None
+- Description: Sets the alignment of the Column’s content along the cross axis responsively.
+
+### direction
+
+- Type: `BreakpointDirection`
+- Default: None
+- Description: Defines the flex direction (e.g. row or column) for the Column responsively.
+
+### justify
+
+- Type: `BreakpointJustify`
+- Default: None
+- Description: Controls the justification of the Column’s child elements responsively.
+
+### wrap
+
+- Type: `BreakpointFlexWrap`
+- Default: None
+- Description: Determines the wrapping behaviour of the Column’s content responsively.
+
+### gap
+
+- Type: `BreakpointGap`
+- Default: None
+- Description: Sets the gap between child elements within the Column responsively.
+
+### padding
+
+- Type: `Padding (via breakpoint values)`
+- Default: None
+- Description: Applies responsive padding to the Column using a custom utility.
+
+### width
+
+- Type: `BreakpointWidth`
+- Default: None
+- Description: Sets the responsive width for the Column.
+
+### height
+
+- Type: `BreakpointHeight`
+- Default: None
+- Description: Sets the responsive height for the Column.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: The content to be rendered within the Column.
+
+### ...rest
+
+- Type: `Additional native HTML attributes`
+- Default: None
+- Description: Any extra attributes provided are passed to the underlying HTML element.

@@ -1,0 +1,75 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Form/Label' />
+
+# Label
+
+The **Label** component is a flexible form label element that utilizes the `Typography` component to render text. It is wrapped in a `Spacer` to handle layout spacing and supports customizable styling, color variants, and error states.
+
+## Usage
+
+```tsx
+import { Label } from '@atoms/Form/_Label.component'
+```
+
+```tsx
+  <Label
+    padding={{ default: 6 }}
+    color={color}
+    htmlFor={'yellow'}
+    label={{
+      text: `Select Color${colorsError ? ': (required)' : ''}`,
+      size: 'body-med',
+      fontWeight: 'medium'
+    }}
+    error={!!colorsError}
+  />
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, applied directly to the `<label />` element.
+
+### color
+
+- Type: `string`
+- Default: `'dark'`
+- Description: Determines the color variant of the label. This prop is used to apply the appropriate styling via the Typography component.
+
+### label
+
+- Type: `LabelProps['label']`
+- Default: None
+- Description: An object containing properties for the typography of the label text. It is spread into the Typography component.
+
+### padding
+
+- Type: `Spacers`
+- Default: None
+- Description: Spacing applied to the component via the Spacer wrapper.
+
+### margin
+
+- Type: `Spacers`
+- Default: None
+- Description: Margin applied to the component via the Spacer wrapper.
+
+### error
+
+- Type: `boolean`
+- Default: `false`
+- Description: Indicates whether the label should be styled with error classes. When true, error styling is applied.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Additional content to be rendered inside the label, following the main label text.
+
+### ...rest
+
+- Type: `LabelHTMLAttributes<HTMLLabelElement>`
+- Default: None
+- Description: Other native HTML attributes for the `<label />` element.

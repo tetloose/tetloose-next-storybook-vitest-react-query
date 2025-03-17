@@ -1,0 +1,99 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Documentation/Best Practices" />
+
+# Best Practices
+
+This is a collection of best practices and conventions to follow with this project
+
+## PR Checklist
+
+- Your code builds clean without any errors or warnings
+- You are happy with your implementation, would you pass it?
+- You have adhered to agency coding standards
+- You have pulled the most recent develop branch
+- You have created unit tests where appropriate
+- You have tested your implementation and can’t find any bugs
+- You have run the project units test and they pass
+- You have added documentation to the project wiki on how to use any new features
+
+## Coding standards
+
+- Keep the components simple as possible
+- Keep code organized and tidy
+- Keep code dry
+- Split code into manageable chunks
+- Deconstruct Objects & Functions
+- All content must come from the API
+
+```tsx
+export const ComponentName = ({
+  variant,
+  modifiers,
+  prop1,
+  prop2,
+  prop3,
+  tag,
+  ...rest
+}: ComponentNameProps) => {
+    // functions
+
+    return ()
+}
+```
+
+## Folder Structure
+
+This is the structure for the components within components folder.
+
+```
+Component-name
+  |-- hooks
+    |-- Component-name.hooks.ts
+  |-- utils
+    |-- Component-name.utils.ts
+  |-- Component-name.component.tsx
+  |-- Component-name.types.ts
+  |-- Component-name.module.scss
+  |-- Component-name.stories.tsx
+  |-- Component-name.stories.mdx
+  |-- Component-name.test.tsx
+```
+
+## Css Modules
+
+The projects modules where possible are written in BEM and SMACS for structure for familiarity.
+
+Css modules allows styles to be included using dot notation within the components. However due to using BEM we lose the Element and Modifier identifiers using dot notation.
+
+For ease of development and aligning the styles we use CSS modules this way:
+
+```tsx
+import cs from "classnames";
+import styles from "./Component-name.module.css";
+
+export const ComponentName = ({
+  variant,
+  modifiers,
+  ...rest
+}: ComponentNameProps) => {
+  // functions
+
+  return (
+    <div
+      className={cs(
+        styles['component-block'],
+        styles['component-block--modifier'],
+        styles['has-modifier'],
+        styles['is-modifier'],
+        styles['bg-dark'],
+        styles['color-light']
+      )}
+    >
+      <span className={styles['component-block__element']}>/* content */</span>
+    </div>
+  );
+};
+```
+
+It is important to note that we use the `classnames` package as a way of joining the classes together, this is mainly used in **Foundations** and **Atoms** as these components will use **HTML elements**. Once you drill down into Components, we will have these building blocks, and we can pass down **Modifiers** as a `string[]`

@@ -1,0 +1,67 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Form/Input' />
+
+# Input
+
+The **Input** component is a versatile form control that renders a native `<input />` element wrapped in a `Spacer` component. It supports customizable styling through color variants, spacing, and error states.
+
+## Usage
+
+```tsx
+import { Input } from '@atoms/Form/_Input.component'
+```
+
+```tsx
+  <Input
+    padding={{ default: 2 }}
+    color={color}
+    type={'password'}
+    placeholder={'Password'}
+    id={'password'}
+    error={!!passwordError}
+    {...register('password', { required: true })}
+  />
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling. These modifiers are appended to the component's base classes.
+
+### color
+
+- Type: `string`
+- Default: `'dark'`
+- Description: Determines the color variant of the input. This prop is used to apply the appropriate styling.
+
+### type
+
+- Type: `string`
+- Default: `text`
+- Description: Specifies the native input type for the element (e.g. text, number, password, etc).
+
+### padding
+
+- Type: `Spacers`
+- Default: None
+- Description: Spacing applied to the component via the Spacer wrapper. It controls the internal padding.
+
+### margin
+
+- Type: `Spacers`
+- Default: None
+- Description: Margin applied around the component via the Spacer wrapper.
+
+### error
+
+- Type: `boolean`
+- Default: `false`
+- Description: Indicates whether the input is in an error state. When true, error styling is applied.
+
+### ...rest
+
+- Type: `InputHTMLAttributes<HTMLInputElement>`
+- Default: None
+- Description: Additional native HTML attributes for the <input /> element.

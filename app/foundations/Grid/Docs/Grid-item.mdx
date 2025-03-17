@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Foundations/Grid/Grid-Item' />
+
+# GridItem
+
+The **GridItem** component is intended for use within a Grid layout. It represents an individual cell that can be positioned using responsive row and column configurations. Additionally, it supports custom background colours and horizontal scroll handling through an optional wheel event handler.
+
+## Usage
+
+```tsx
+import { GridItem } from '@foundations/Grid/Grid-item.component'
+```
+
+```tsx
+  <GridItem
+    tag={'section'}
+    rows={{ default: [2] }}
+    columns={{ default: [1] }}
+  >
+    {children}
+  </GridItem>
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the component's base classes.
+
+### tag
+
+- Type: `Tags`
+- Default: `'section'`
+- Description: The HTML element tag used to render the GridItem. Defaults to `<section>`.
+
+### rows
+
+- Type: `RowProps`
+- Default: None
+- Description: Defines the grid item's row configuration for positioning within the grid.
+
+### columns
+
+- Type: `ColumnProps`
+- Default: None
+- Description: Defines the grid item's column configuration for positioning within the grid.
+
+### bg
+
+- Type: `string`
+- Default: None
+- Description: Specifies the background colour of the grid item via a corresponding CSS class.
+
+### horizontalScroll
+
+- Type: `boolean`
+- Default: None
+- Description: When set to true, enables horizontal scrolling for the grid item using a custom hook.
+
+### onWheelHandler
+
+- Type: `WheelEventHandler<HTMLDivElement>`
+- Default: None
+- Description: A custom event handler for wheel events on the grid item. Invoked alongside horizontal scroll handling if enabled.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Child elements to be rendered within the grid item.
+
+### ...rest
+
+- Type: `Additional native HTML attributes`
+- Default: None
+- Description: Any extra attributes provided will be passed to the underlying grid item element.

@@ -1,0 +1,62 @@
+@use '@styles/settings' as *;
+@use './Typography-vars' as *;
+
+%type-heading {
+  @extend %f-heading;
+}
+
+%type-h1 {
+  @extend %type-heading;
+  @include sizing('font-size', deep-get($type, headings, font-size, h1));
+  @include sizing('line-height', deep-get($type, headings, line-height, h1));
+}
+
+%type-h2 {
+  @extend %type-heading;
+  @include sizing('font-size', deep-get($type, headings, font-size, h2));
+  @include sizing('line-height', deep-get($type, headings, line-height, h2));
+}
+
+%type-h3 {
+  @extend %type-heading;
+  @include sizing('font-size', deep-get($type, headings, font-size, h3));
+  @include sizing('line-height', deep-get($type, headings, line-height, h3));
+}
+
+%type-h4 {
+  @extend %type-heading;
+  @include sizing('font-size', deep-get($type, headings, font-size, h4));
+  @include sizing('line-height', deep-get($type, headings, line-height, h4));
+}
+
+%type-h5 {
+  @extend %type-heading;
+  @include sizing('font-size', deep-get($type, headings, font-size, h5));
+  @include sizing('line-height', deep-get($type, headings, line-height, h5));
+}
+
+%type-h6 {
+  @extend %type-heading;
+  @include sizing('font-size', deep-get($type, headings, font-size, h6));
+  @include sizing('line-height', deep-get($type, headings, line-height, h6));
+}
+
+@each $breakpoint in vars(settings, breakpoints) {
+  %type-body-#{$breakpoint} {
+    @include sizing('font-size', deep-get($type, body, font-size, #{$breakpoint}));
+    @include sizing('line-height', deep-get($type, body, line-height, #{$breakpoint}));
+    @extend %f-body;
+  }
+}
+
+%type-ul {
+  list-style-type: disc;
+
+  @include sizing('margin-left', size(4));
+}
+
+%type-ol {
+  list-style-type: decimal;
+
+  @include sizing('margin-left', size(3.75));
+}

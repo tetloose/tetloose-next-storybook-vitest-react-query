@@ -1,0 +1,99 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Documentation/Variables' />
+
+# Variables
+
+This document outlines the SASS variables used throughout the project. These variables define layout, typography, spacing, transitions, and more to ensure a consistent design system.
+
+## Settings
+
+- browser-context: `16px`
+  *Description*: Base value used to calculate rem values for font sizing.
+
+- spacing: `4px`
+  *Description*: Global spacing unit for margins, paddings, and other layout needs.
+
+- rem: `true`
+  *Description*: Toggle to switch the application’s sizing method to rem (if true) or vw.
+
+- loop: `10`
+  *Description*: Manage loops. e.g. padding, spacers etc.
+
+- breakpoints `('sml', 'med', 'lrg', 'xlrg', 'xxlrg')`
+  *Description*: Manage breakpoint loops.
+
+- directions `('top', 'right', 'bottom', 'left')`
+  *Description*: Manage directions loops e.g. padding-top, border-top- etc.
+
+## Rem
+
+When Rem is set to `true` -> `$vars.settings.rem = true`.
+
+- sml: `70%`
+  *Description*: Relative font size for small displays
+
+- med: `80%`
+  *Description*: Relative font size for medium displays
+
+- lrg: `100%`
+  *Description*: Relative font size for large displays
+
+## Row
+
+- columns: `12`
+  *Description*: Define the column amount for Column component.
+
+- max-width: `1440px`
+  *Description*: Define Row max width before aligning centre, set to false for 100%.
+
+## Breakpoints
+
+- sml: `420px`
+- med: `768px`
+- lrg: `1080px`
+- xlrg: `1440px`
+- xxlrg: `1920px`
+
+For full list See: `src/styles/settings/variables.scss`
+
+## Usage
+
+### Variables Function
+
+See: `src/styles/settings/variables.scss`
+
+```scss
+@function vars($name, $variant: null) {
+  @if $variant {
+    @return map.get(map.get($vars, $name), $variant);
+  } @else {
+    @return map.get($vars, $name);
+  }
+}
+```
+
+### Basic Usage
+
+`padding: vars(settings, spacing);`
+
+### Deep-Get Function
+
+See: `src/styles/mixins/deep-get.scss`
+
+```scss
+@function deep-get($map, $keys...) {
+  $result: $map;
+
+  @each $key in $keys {
+    $result: map.get($result, $key);
+  }
+
+  @return $result;
+}
+```
+
+## Usage
+
+`font-size: deep-get($vars, headings, font-size, h6);`
+`font-size: deep-get($vars, headings, line-height, h6);`

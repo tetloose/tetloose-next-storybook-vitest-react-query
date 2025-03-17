@@ -1,0 +1,97 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Foundations/Row' />
+
+## Usage
+
+```tsx
+import { Row } from '@foundations/Row/Row.component'
+```
+
+```tsx
+  <Row>
+    {children}
+  </Row>
+```
+
+## Row
+
+The **Row** component is a flexible container that utilises flexbox to layout its children. It supports responsive properties such as display, alignment, direction, wrapping, padding, and height. You can render the Row using a custom HTML tag if required.
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the component's base classes.
+
+### tag
+
+- Type: `string`
+- Default: `'div'`
+- Description: The HTML element tag used to render the Row. Defaults to a `<div>`.
+
+### bg
+
+- Type: `string`
+- Default: None
+- Description: Specifies the background colour of the Row via a corresponding CSS class.
+
+### border & borderColor
+
+- Type: `As defined by the Border type (e.g. number and string)`
+- Default: None
+- Description: Defines the border style and its colour. These props are used together with a utility function to generate the appropriate CSS classes.
+
+### display
+
+- Type: `BreakpointDisplay`
+- Default: `{ default: 'flex' }`
+- Description: Responsive display settings that control the CSS display property across different breakpoints.
+
+### align
+
+- Type: `BreakpointFlexAlign`
+- Default: None
+- Description: Sets the alignment of child elements along the cross axis responsively.
+
+### direction
+
+- Type: `BreakpointDirection`
+- Default: None
+- Description: Sets the flex direction (e.g. row, column) responsively.
+
+### justify
+
+- Type: `BreakpointJustify`
+- Default: None
+- Description: Controls the justification of child elements along the main axis responsively.
+
+### wrap
+
+- Type: `BreakpointFlexWrap`
+- Default: `{ default: 'wrap' }`
+- Description: Determines how child elements should wrap within the Row responsively.
+
+### padding
+
+- Type: `Padding (via breakpoint values)`
+- Default: None
+- Description: Applies responsive padding to the Row using a custom utility.
+
+### height
+
+- Type: `BreakpointHeight`
+- Default: None
+- Description: Sets responsive height values for the Row.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: The content to be rendered within the Row.
+
+### ...rest
+
+- Type: `Additional native HTML attributes`
+- Default: None
+- Description: Any extra attributes provided are passed to the underlying HTML element.

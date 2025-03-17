@@ -1,0 +1,11 @@
+@use '@styles/settings' as *;
+
+.image {
+  display: block;
+  width: 100%;
+
+  @include disable(true);
+  @extend %ratios;
+  @extend %image-size;
+  @extend %image-position;
+}

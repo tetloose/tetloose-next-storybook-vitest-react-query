@@ -1,0 +1,28 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Documentation/Component Generation" />
+
+# Interactive tool to scaffold components.
+
+`yarn gen:component`, follow the prompts.
+
+```
+Enter component location:
+
+[0] Foundation
+[1] Atom
+[2] Component
+[3] Layouts
+```
+
+This will create the component files in the selected location with the folder structure.
+
+```
+Component-name
+  |-- Component-name.component.tsx
+  |-- Component-name.types.ts
+  |-- Component-name.module.scss
+  |-- Component-name.stories.tsx
+  |-- Component-name.stories.mdx
+  |-- Component-name.test.tsx
+```

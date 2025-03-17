@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Layouts/Header' />
+
+# Components / Atoms / Foundations Used
+
+## Atoms:
+
+- **Logo**
+  Provides a clickable logo component, typically used for branding and navigation.
+
+## Foundations:
+
+- **GridItem, Row, Column**
+  Offer layout and spacing utilities to build structured and responsive page sections.
+
+## Export
+
+`export default Header`
+
+## Usage
+
+`src/App.tsx`
+
+```tsx
+import { lazy, Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { useAnimate } from '@hooks/Animate/use-animate.hooks'
+import { navigation } from '@routes/navigation.routes'
+import { Grid } from '@foundations/Grid/Grid.component'
+import { Loading } from '@atoms/Loading/Loading.component'
+
+const Header = lazy(() => import('@layouts/Header/Header.component'))
+
+const App = () => {
+  const animation = useAnimate()
+
+  return (
+    <Suspense fallback={<Loading center={true} />}>
+      <Grid
+        modifiers={['animate', animation]}
+        height={{ default: 'viewport-fullscreen' }}
+        rows={{ default: ['auto', 1, 'auto'] }}
+        columns={{ default: [1] }}
+      >
+        <Header />
+        ...
+      </Grid>
+    </Suspense>
+  )
+}
+
+export default App
+```

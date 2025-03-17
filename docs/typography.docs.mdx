@@ -1,0 +1,75 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Documentation/Typography" />
+
+# Typography
+
+## Import fonts globally
+
+Add fonts to `src/fonts`.
+
+## Font Face Mixin
+
+The font-face mixin takes several augments:
+
+- font-family: Font name
+- file-path: Font location relative the generated css
+- weight: Font weight
+- exts: Font extensions 'eot woff2 woff ttf svg'
+- display: Change the font display
+
+`src/styles/mixins/font-face.scss`
+
+### Example usage:
+
+```
+@include font-face('icons', '@icons/icons', normal, svg woff ttf);
+@include font-face('Heading', '@fonts/Oswald-Light', 300, ttf);
+```
+
+## Font settings
+
+Font family's, weights, style, utilities are extended from here: `src/styles/settings/typography.scss`
+
+## Font Sizes
+
+Font sizes are stored within a deep map object `$type` here: `src/foundations/Typography/_Typography-vars.scss`, and extended from `src/foundations/Typography/_Typography-extends.scss`
+
+```
+headings: (
+  font-size: (
+    h6: 16px,
+    h5: 20px,
+    h4: 25px,
+    h3: 30px,
+    h2: 35px,
+    h1: 40px
+  ),
+  line-height: (
+    h6: 16px,
+    h5: 20px,
+    h4: 25px,
+    h3: 30px,
+    h2: 35px,
+    h1: 40px
+  )
+),
+body: (
+  font-size: (
+    sml: 14px,
+    med: 18px,
+    lrg: 20px,
+    xlrg: 24px,
+    xxlrg: 28px
+  ),
+  line-height: (
+    sml: 18px,
+    med: 22px,
+    lrg: 24px,
+    xlrg: 28px,
+    xxlrg: 32px
+  )
+),
+```
+
+Usage: `deep-map($type, headings, font-size, h1)`

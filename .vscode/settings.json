@@ -1,0 +1,44 @@
+{
+  "files.insertFinalNewline": true,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "CSS": "CSS",
+    "SCSS": "CSS",
+    "typescript": "typescriptreact"
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "eslint.validate": ["typescript", "typescriptreact"],
+  "stylelint.validate": ["css", "scss"],
+  "files.exclude": {
+    "yarn.lock": false,
+    "tsconfig.json": false,
+    "toolkit": false,
+    "stylelint.config.mjs": false,
+    "package.json": false,
+    "next.config.ts": false,
+    "next-env.d.ts": false,
+    "eslint.config.mjs": false,
+    ".gitignore": false,
+    ".editorconfig": false,
+    "node_modules": false,
+    ".vscode": false,
+    ".vitest": false,
+    ".scripts": false,
+    ".next": false,
+    ".husky": false
+  },
+  "search.exclude": {
+    "node_modules": true,
+    "build": true,
+    "storybook-static": true
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative"
+}

@@ -1,0 +1,39 @@
+@use 'sass:color';
+@use '@styles/settings' as *;
+
+$inputs: (
+  font-size: 16px,
+  line-height: 16px,
+  letter-spacing: 1.4px,
+  border: (
+    width: 0.25
+  ),
+  select-arrow: (
+    border-top-width: 3,
+    border-right-width: 2.5,
+    border-left-width: 2.5
+  ),
+  dark: (
+    border: color(grey, default),
+    color: color(default, dark),
+    bg: color(default, light),
+    select-arrow: color(default, dark),
+    hover: (
+      border: color(default, dark),
+      color: color(default, dark),
+      bg: color(default, light),
+      select-arrow: color(default, dark)
+    )
+  ),
+  light: (
+    border: color(grey, default),
+    color: color(default, light),
+    bg: color(default, dark),
+    select-arrow: color(default, light),
+    hover: (
+      border: color(default, light),
+      color: color(default, light),
+      bg: color(default, dark)
+    )
+  )
+);

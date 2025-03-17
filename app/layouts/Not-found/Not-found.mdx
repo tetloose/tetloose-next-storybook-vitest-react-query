@@ -1,0 +1,49 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Layouts/Not-found' />
+
+# Components / Atoms / Foundations Used
+
+## Atoms:
+
+- **Button, Loading**
+  Provide actionable elements and display a loading indicator while content is being fetched.
+
+## Foundations:
+
+- **GridItem, Row, Column, Typography**
+  Offer layout, spacing, and text styling utilities to construct structured and responsive page sections.
+
+## Hooks:
+
+- **useAnimate**
+  Applies animation classes for smooth transitions.
+- **useNotFoundContent**
+  Retrieves content specific to the NotFound layout, including titles, subtitles, and error details.
+
+## Export
+
+`export default NotFound`
+
+## Usage
+
+`src/routes/navigation.routes.tsx`
+
+```tsx
+import { lazy } from 'react'
+import type { RouteObject } from 'react-router-dom'
+
+const NotFound = lazy(() => import('@layouts/Not-found/Not-found.component'))
+
+export const navigation: RouteObject[] = [
+  ...,
+  {
+    path: '*',
+    element: <NotFound />
+  }
+]
+```
+
+## Error Usage
+
+This also acts as an ErrorBoundary component, if an error occurs this component will load with the error details.

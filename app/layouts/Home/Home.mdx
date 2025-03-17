@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Layouts/Home' />
+
+# Components / Atoms / Foundations Used
+
+## Atoms:
+
+- **Card**
+  A versatile component that displays an image, title, body text, and an optional link.
+
+## Foundations:
+
+- **GridItem, Row, Column**
+  Provide layout and spacing utilities to arrange content in a responsive grid.
+
+## Hooks:
+
+- **useAnimate**
+  Adds animation classes to components.
+- **useHomeContent**
+  Retrieves and provides the home page content.
+
+## Export
+
+`export default Home`
+
+## Usage
+
+`src/routes/navigation.routes.tsx`
+
+```tsx
+import { lazy } from 'react'
+import type { RouteObject } from 'react-router-dom'
+
+const Home = lazy(() => import('@layouts/Home/Home.component'))
+
+export const navigation: RouteObject[] = [
+  {
+    path: '/',
+    element: <Home />
+  },
+  ...
+]
+```

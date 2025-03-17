@@ -1,0 +1,9 @@
+@use '@styles/settings' as *;
+@use './Form-vars' as *;
+
+%type-input {
+  @extend %f-body;
+  @include sizing('font-size', deep-get($inputs, font-size));
+  @include sizing('line-height', deep-get($inputs, line-height));
+  @include sizing('letter-spacing', deep-get($inputs, letter-spacing));
+}

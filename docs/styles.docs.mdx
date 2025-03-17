@@ -1,0 +1,39 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Documentation/Styles" />
+
+# Styles
+
+## Entry
+
+`./src/app.scss`: Global styles
+
+### Reset
+
+These styles handle project normalizing.
+
+`src/styles/reset`
+
+### Settings
+
+These styles handle project colors, typography and variables.
+
+`src/styles/settings`
+
+### Global
+
+These styles handle html / body styles and font importing.
+
+`src/styles/global`
+
+### Layout
+
+These styles handle layout.
+
+### Mixins
+
+`src/styles/mixins`
+
+## Importing settings.
+
+When working with `*.module.scss` you can import **settings** and **mixins** with `@use '@styles/settings' as *;`.

@@ -1,0 +1,25 @@
+@use '@styles/settings' as *;
+@use './Icon-vars' as *;
+@use './Icon-extends' as *;
+@include font-face('icons', '/assets/icons/icons', normal, ttf woff svg);
+
+.icon {
+  @extend %f-icons;
+  @include transition('all');
+
+  &.happy::before {
+    content: '\e900';
+  }
+
+  &.angry::before {
+    content: '\e901';
+  }
+
+  @each $breakpoint in vars(settings, breakpoints) {
+    &.is-#{'' + $breakpoint} {
+      @extend %type-icon-#{$breakpoint};
+    }
+  }
+
+  @extend %color;
+}

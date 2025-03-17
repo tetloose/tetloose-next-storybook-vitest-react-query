@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Documentation/Notification' />
+
+# Notification
+
+The **useNotification** Hook can be called to provide types of notifications, provided by `react-hot-toast`.
+
+## Usage
+
+```tsx
+import { useNotification } from '@hooks/Notification/use-notification.hooks'
+```
+
+```tsx
+  const notify = useNotification()
+
+  notify('Notification default', 'default')
+  notify('Notification error', 'error')
+  notify('Notification loading', 'loading')
+  notify('Notification success', 'success')
+```

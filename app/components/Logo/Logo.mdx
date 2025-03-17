@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Components/Logo' />
+
+# Logo
+
+The **Logo** component is a clickable logo that navigates to a designated route via the `<Link>` component. It retrieves its content using the `useLogoContent` hook and conditionally displays either a `<Loading>` indicator while content is fetching or an `<Image>` once the content is ready.
+
+## Usage
+
+```tsx
+import { Logo } from '@components/Logo/Logo.component'
+```
+
+```tsx
+  <Logo modifiers={['custom-logo']} />
+```
+
+## Content Managed
+
+`public/api/content.json`
+
+```json
+  [
+    "logo": {
+      "to": "/",
+      "src": "/assets/images/logo.svg",
+      "alt": "Tetloose React Vite TS Storybook"
+    },
+    ...
+  ]
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the component's default logo class.

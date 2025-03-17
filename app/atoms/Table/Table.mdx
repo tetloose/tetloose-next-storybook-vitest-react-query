@@ -1,0 +1,261 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Table' />
+
+# Table
+
+The **Table** component is a simple loading indicator that renders a native `<span />` element with customisable styling. It supports colour variants and an optional centre alignment to position the loading indicator in the middle of its container.
+
+## Usage
+
+```tsx
+import { Column } from '@foundations/Row/Column.component'
+import { Row } from '@foundations/Row/Row.component'
+import { Typography } from '@foundations/Typography/Typography.component'
+import { Table } from '@atoms/Table/Table.component'
+import { Ti } from '@atoms/Table/_T-i.component'
+import { TableTitle } from '@atoms/Table/_Table-title.component'
+```
+
+```tsx
+  const title1 = 'Table Title 1'
+  const title2 = 'Table Title 2'
+  const title3 = 'Table Title 3'
+```
+
+```tsx
+  <Row>
+    <Column
+      padding={{
+        top: { default: 10 },
+        right: { default: 10 },
+        bottom: { default: 10 },
+        left: { default: 10 }
+      }}
+    >
+      <Table
+        layout={'fixed'}
+        borderCollapse={'collapse'}
+        verticalAlign={'middle'}
+      >
+        <Ti tag={'thead'}>
+          <Ti tag={'tr'}>
+            <Ti
+              tag={'th'}
+              border={{
+                top: { default: true },
+                right: { med: true },
+                bottom: { med: true },
+                left: { med: true }
+              }}
+              borderColor={'dark'}
+            >
+              <Typography tag={'span'} size={'body-med'} text={title1} />
+            </Ti>
+            <Ti
+              tag={'th'}
+              border={{
+                top: { default: true },
+                right: { med: true },
+                bottom: { med: true },
+                left: { med: true }
+              }}
+              borderColor={'dark'}
+              textAlign={{ med: 'center' }}
+            >
+              <Typography tag={'span'} size={'body-med'} text={title2} />
+            </Ti>
+            <Ti
+              tag={'th'}
+              border={{
+                top: { default: true },
+                right: { med: true },
+                bottom: { med: true },
+                left: { med: true }
+              }}
+              borderColor={'dark'}
+              textAlign={{ med: 'right' }}
+            >
+              <Typography tag={'span'} size={'body-med'} text={title3} />
+            </Ti>
+          </Ti>
+        </Ti>
+        <Ti tag={'tbody'}>
+          <Ti tag={'tr'}>
+            <TableTitle
+              size={'body-lrg'}
+              fontWeight={'bold'}
+              text={title1}
+              padding={{ default: 5 }}
+            />
+            <Ti
+              tag={'td'}
+              border={{
+                top: { default: true },
+                right: { med: true },
+                bottom: { med: true },
+                left: { med: true }
+              }}
+              borderColor={'dark'}
+            >
+              <Typography tag={'span'} size={'body-med'} text={'Tbody'} />
+            </Ti>
+            <TableTitle
+              size={'body-lrg'}
+              fontWeight={'bold'}
+              text={title2}
+              padding={{ default: 5 }}
+            />
+            <Ti tag={'td'} bg={'dark'} textAlign={{ med: 'center' }}>
+              <Typography
+                tag={'span'}
+                size={'body-med'}
+                text={'Tbody'}
+                color={'light'}
+              />
+            </Ti>
+            <TableTitle
+              size={'body-lrg'}
+              fontWeight={'bold'}
+              text={title3}
+              padding={{ default: 5 }}
+            />
+            <Ti
+              tag={'td'}
+              border={{
+                top: { default: true },
+                right: { med: true },
+                bottom: { med: true },
+                left: { med: true }
+              }}
+              borderColor={'dark'}
+              textAlign={{ med: 'right' }}
+            >
+              <Typography tag={'span'} size={'body-med'} text={'Tbody'} />
+            </Ti>
+          </Ti>
+        </Ti>
+        <Ti tag={'tfoot'}>
+          <Ti tag={'tr'}>
+            <TableTitle
+              size={'body-lrg'}
+              fontWeight={'bold'}
+              text={title1}
+              padding={{ default: 5 }}
+            />
+            <Ti
+              tag={'td'}
+              border={{
+                top: { default: true },
+                right: { med: true },
+                bottom: { med: true },
+                left: { med: true }
+              }}
+              borderColor={'dark'}
+            >
+              <Typography tag={'span'} size={'body-med'} text={'Tfoot'} />
+            </Ti>
+            <TableTitle
+              size={'body-lrg'}
+              fontWeight={'bold'}
+              text={title2}
+              padding={{ default: 5 }}
+            />
+            <Ti
+              tag={'td'}
+              border={{
+                top: { default: true },
+                right: { med: true },
+                bottom: { med: true },
+                left: { med: true }
+              }}
+              borderColor={'dark'}
+              textAlign={{ med: 'center' }}
+            >
+              <Typography tag={'span'} size={'body-med'} text={'Tfoot'} />
+            </Ti>
+            <TableTitle
+              size={'body-lrg'}
+              fontWeight={'bold'}
+              text={title3}
+              padding={{ default: 5 }}
+            />
+            <Ti
+              tag={'td'}
+              border={{
+                top: { default: true },
+                right: { med: true },
+                bottom: { med: true },
+                left: { med: true }
+              }}
+              borderColor={'dark'}
+              textAlign={{ med: 'right' }}
+            >
+              <Typography tag={'span'} size={'body-med'} text={'Tfoot'} />
+            </Ti>
+          </Ti>
+        </Ti>
+      </Table>
+    </Column>
+  </Row>
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the component's base classes.
+
+### layout
+
+- Type: `'auto' | 'fixed'`
+- Default: None
+- Description: Defines the table layout. Use 'auto' for automatic column sizing or `'fixed'` for a fixed layout.
+
+### borderCollapse
+
+- Type: `'collapse' | 'separate'`
+- Default: None
+- Description: Determines whether the table borders are collapsed into a single border `('collapse')` or separated `('separate')`.
+
+### verticalAlign
+
+- Type: `'top' | 'middle' | 'bottom' | 'baseline'`
+- Default: None
+- Description: Sets the vertical alignment of the content within table cells.
+
+### bg
+
+- Type: `string`
+- Default: None
+- Description: Specifies the background colour of the table. This prop applies a corresponding CSS class to set the background.
+
+### border
+
+- Type: `Depends on the Border type`
+- Default: None
+- Description: Defines the border style for the table. Works in conjunction with `borderColor` to generate the appropriate border classes.
+
+### borderColor
+
+- Type: `string`
+- Default: None
+- Description: Specifies the colour of the table border. Used together with the border prop to determine the table's border appearance.
+
+### hide
+
+- Type: `boolean`
+- Default: None
+- Description: If set to true, the table will not be rendered.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Child elements to be rendered inside the table, such as table rows and cells.
+
+### ...rest
+
+- Type: `Additional native HTML attributes for the <table /> element.`
+- Default: None
+- Description: Any extra attributes provided will be passed to the `<table />` element.

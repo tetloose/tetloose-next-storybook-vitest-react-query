@@ -1,0 +1,71 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Foundations/Grid' />
+
+# Grid
+
+The **Grid** component is a responsive layout container that utilises CSS grid features to arrange its children based on dynamic row and column configurations. It injects inline styles into the document via a portal to dynamically generate grid templates and supports responsive height and background colour styling.
+
+## Usage
+
+```tsx
+import { Grid } from '@foundations/Grid/Grid.component'
+```
+
+```tsx
+  <Grid
+    height={{ default: 'viewport-fullscreen' }}
+    rows={{ default: ['auto', 1, 'auto'] }}
+    columns={{ default: [1] }}
+  >
+    {children}
+  </Grid>
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the component's base classes.
+
+### tag
+
+- Type: `Tags`
+- Default: `'main'`
+- Description: The HTML element tag used to render the Grid. Defaults to `<main>`.
+
+### bg
+
+- Type: `string`
+- Default: None
+- Description: Specifies the background colour of the grid via a corresponding CSS class.
+
+### height
+
+- Type: `BreakpointHeight`
+- Default: None
+- Description: Sets responsive height values for the grid.
+
+### rows
+
+- Type: `RowProps`
+- Default: `Required`
+- Description: Defines the grid's row configuration. This object is used to generate grid template rows.
+
+### columns
+
+- Type: `ColumnProps`
+- Default: `Required`
+- Description: Defines the grid's column configuration. This object is used to generate grid template columns.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Child elements to be rendered within the grid.
+
+### ...rest
+
+- Type: `Additional native HTML attributes`
+- Default: None
+- Description: Any extra attributes provided will be passed to the underlying grid element.

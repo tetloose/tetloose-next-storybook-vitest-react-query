@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Layouts/Footer' />
+
+# Components / Atoms / Foundations Used
+
+## Atoms:
+
+- Button, Icon, Image, Link, Loading
+- Provide the smallest, reusable UI elements.
+
+## Foundations:
+
+- Grid, Row, Column, Spacer, Typography
+- Offer layout and spacing utilities to build complex page structures.
+
+## Export
+
+`export default Footer`
+
+## Usage
+
+`src/App.tsx`
+
+```tsx
+import { lazy, Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { useAnimate } from '@hooks/Animate/use-animate.hooks'
+import { navigation } from '@routes/navigation.routes'
+import { Grid } from '@foundations/Grid/Grid.component'
+import { Loading } from '@atoms/Loading/Loading.component'
+
+const Footer = lazy(() => import('@layouts/Footer/Footer.component'))
+
+const App = () => {
+  const animation = useAnimate()
+
+  return (
+    <Suspense fallback={<Loading center={true} />}>
+      <Grid
+        modifiers={['animate', animation]}
+        height={{ default: 'viewport-fullscreen' }}
+        rows={{ default: ['auto', 1, 'auto'] }}
+        columns={{ default: [1] }}
+      >
+        ...
+        <Footer />
+      </Grid>
+    </Suspense>
+  )
+}
+
+export default App
+```

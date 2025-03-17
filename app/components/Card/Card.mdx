@@ -1,0 +1,86 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Components/Card' />
+
+# Card
+
+The **Card** component is a versatile UI element that displays content in a card layout. It supports an image, title, body text, and optional actions such as a button or link. When data is loading, it displays a loading indicator. The Card is built using other foundational components such as Row, Column, Spacer, Typography, Button, Image, Link, and Loading.
+
+## Usage
+
+```tsx
+import { Card } from '@components/Card/Card.component'
+```
+
+```tsx
+  <Card
+    modifiers={['custom-card']}
+    image={{
+      src: '/path/to/image.jpg',
+      alt: 'Descriptive text',
+      desktop: '/path/to/desktop-image.jpg',
+      tablet: '/path/to/tablet-image.jpg',
+      mobile: '/path/to/mobile-image.jpg',
+      placeholder: '/path/to/placeholder.jpg',
+      width: 600,
+      height: 400,
+      blur: true,
+      modifiers: ['custom-image']
+    }}
+    title={'Card Title'}
+    body={'This is an example of the card body text that provides a brief description.'}
+    button={{
+      label: 'Click Me',
+      variant: 'primary',
+      onClick: () => console.log('Button clicked')
+    }}
+    link={{
+      title: 'Learn More',
+      to: '/more-info',
+      variant: 'dark'
+    }}
+    loading={false}
+  />
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling. These modifiers are appended to the card's base classes.
+
+### image
+
+- Type: `ImageContent`
+- Default: None
+- Description: An object with image properties such as src, alt, and responsive sources (desktop, tablet, mobile). This prop is used to render the image in the card.
+
+### title
+
+- Type: `string`
+- Default: None
+- Description: The title text of the card, rendered using a Typography component with an h2 tag.
+
+### body
+
+- Type: `string`
+- Default: None
+- Description: The body text of the card, rendered as a paragraph. It provides additional details or description.
+
+### button
+
+- Type: `ContentButton (optional)`
+- Default: None
+- Description: An object containing properties for the button. When provided, a Button component is rendered to display an actionable element.
+
+### link
+
+- Type: `ContentLink (optional)`
+- Default: None
+- Description: An object containing properties for the link. When provided, a Link component is rendered, allowing navigation to another route.
+
+### loading
+
+- Type: `boolean`
+- Default: None
+- Description: A flag indicating whether the card is in a loading state. When set to true, a Loading component is displayed instead of the card content.

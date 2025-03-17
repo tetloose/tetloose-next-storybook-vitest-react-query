@@ -1,0 +1,29 @@
+@use '@styles/settings' as *;
+
+@mixin form-error($color: dark, $border: false) {
+  &.has-error {
+    @if $color == 'dark' {
+      color: color(red, default);
+
+      &::placeholder {
+        color: color(red, default);
+      }
+
+      @if border {
+        border-color: color(red, default);
+      }
+    }
+
+    @if $color == 'light' {
+      color: color(pink, default);
+
+      &::placeholder {
+        color: color(pink, default);
+      }
+
+      @if border {
+        border-color: color(pink, default);
+      }
+    }
+  }
+}

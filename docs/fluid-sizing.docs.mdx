@@ -1,0 +1,93 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Documentation/Fluid Sizing" />
+
+# Fluid Sizing
+
+Sizing is based on base value of 4x called **spacing** -> `src/styles/settings/variables.scss`:
+
+```
+layout: (
+  spacing: 4px,
+  ...
+),
+```
+
+## Size function
+
+To ensure all values passed into the application relate to the base spacing value, the size function is used to generate values e.g.
+
+`padding-top: 16px;` => `padding-top: size(4);`
+
+`4 * spacing = 16`
+
+When a px value isn't divisble by 4 e.g.
+
+`padding-top: 42px;` => `padding-top: size(10.5);`
+
+`42 / 4 = 10.5`.
+
+If the value spacing in variables changes, the entire application gets updated with new values.
+
+## Sizing
+
+Sizing function is used to convert px values into vw units to achieve fluid sizing. See `src/styles/mixins/sizing.scss` for sizing variables, these can be adjusted depending on the desired scale.
+
+```
+$vw-min: vars(breakpoint, med);
+$vw-max: vars(breakpoint, xxlrg);
+$vw-context: calc(strip-unit($vw-max) * .01 * 1px);
+$vw-adjustment-min: 3vw;
+$vw-adjustment-max: 1vw;
+```
+
+### Usage
+
+#### Single values
+
+`@include sizing('padding-top', size(4))`;
+
+#### Muti Values
+
+`@include sizing('padding', [size(4), size(2), size(0), size(8)])`;
+
+This will generate vw calculations on three breakpoints for each size.
+
+- Below $vw-min => 'larger size using 3vw as the adjustment'
+- $vw-min -> $vw-max => 'Scale from min to max'
+- Above $vw-max => 'Set the value as a Rem unit'
+
+See: `src/styles/mixins/sizing.scss`
+
+## Switching between Fluid and Rem
+
+```
+settings: (
+  settings: 16px,
+  spacing: 4px,
+  rem: true <---- (set to false for fluid sizing)
+),
+```
+
+Setting Rem to false, sets the sizing of the application to use VW, True uses Rem. This also updates the global HTML sizing to allow for Rem sizes see:
+
+`src/styles/global/html.scss`
+
+```
+@if vars(settings, rem) {
+  @include mq(vars(breakpoint, med), max-width) {
+    font-size: 70%;
+  }
+
+  @include mq-between(
+    vars(breakpoint, med),
+    vars(breakpoint, lrg)
+  ) {
+    font-size: 80%;
+  }
+
+  @include mq(vars(breakpoint, lrg)) {
+    font-size: 100%;
+  }
+}
+```

@@ -1,0 +1,60 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Form/Textarea' />
+
+# Textarea
+
+The **Textarea** component is a form control that renders a native `<textarea />` element wrapped in a `Spacer` component. It supports customisable styling through colour variants, spacing, and error states.
+
+## Usage
+
+```tsx
+import { Textarea } from '@atoms/Form/_Textarea.component'
+```
+
+```tsx
+  <Textarea
+    padding={{ default: 2 }}
+    color={color}
+    placeholder={'Enter your message'}
+    id={'message'}
+    error={!!messageError}
+    {...register('message', { required: true })}
+  />
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling. These modifiers are appended to the component's base classes.
+
+### color
+
+- Type: `string`
+- Default: `'dark'`
+- Description: Specifies the colour variant of the textarea, used to apply the appropriate styling.
+
+### padding
+
+- Type: `Spacers`
+- Default: None
+- Description: Spacing applied to the component via the Spacer wrapper, controlling the internal padding.
+
+### margin
+
+- Type: `Spacers`
+- Default: None
+- Description: Margin applied around the component via the Spacer wrapper.
+
+### error
+
+- Type: `boolean`
+- Default: `false`
+- Description: Indicates whether the textarea is in an error state. When set to true, error styling is applied.
+
+### ...rest
+
+- Type: `TextareaHTMLAttributes<HTMLTextAreaElement>`
+- Default: None
+- Description: Additional native HTML attributes for the `<textarea />` element.

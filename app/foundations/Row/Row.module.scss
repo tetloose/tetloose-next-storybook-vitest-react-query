@@ -1,0 +1,42 @@
+@use '@styles/settings' as *;
+
+.row {
+  $row: &;
+
+  @if vars(row, max-width) {
+    margin-right: auto;
+    margin-left: auto;
+
+    @include sizing('max-width', size(calc(vars(row, max-width) / vars(settings, spacing))));
+
+    #{$row} {
+      max-width: 100%;
+    }
+  } @else {
+    width: 100%;
+  }
+
+  @extend %bg;
+  @extend %border;
+  @extend %display;
+  @extend %align;
+  @extend %direction;
+  @extend %wrap;
+  @extend %justify;
+  @extend %height;
+  @extend %padding;
+
+  &__column {
+    @extend %bg;
+    @extend %border;
+    @extend %display;
+    @extend %width;
+    @extend %align;
+    @extend %direction;
+    @extend %wrap;
+    @extend %justify;
+    @extend %height;
+    @extend %gap;
+    @extend %padding;
+  }
+}

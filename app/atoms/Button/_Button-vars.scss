@@ -1,0 +1,72 @@
+@use 'sass:color';
+@use '@styles/settings' as *;
+
+$button: (
+  font-size: 18px,
+  line-height: 22px,
+  letter-spacing: 1.4px,
+  outline: (
+    width: 0.25
+  ),
+  border: (
+    width: 0.25
+  ),
+  primary: (
+    border: color(default, light),
+    color: color(default, light),
+    bg: color(default, dark),
+    disabled: (
+      border: color(default, light),
+      color: color(default, light),
+      bg: color(default, dark),
+      outline: transparent
+    ),
+    hover: (
+      border: color(default, dark),
+      color: color(default, dark),
+      bg: color(default, light),
+      outline: transparent
+    ),
+    active: (
+      border: color(default, dark),
+      color: color(default, dark),
+      bg: color(default, light),
+      outline: transparent
+    ),
+    focus: (
+      border: color(default, dark),
+      color: color(default, dark),
+      bg: color(default, light),
+      outline: color(default, light)
+    )
+  ),
+  secondary: (
+    border: color(default, dark),
+    color: color(default, dark),
+    bg: color(default, light),
+    disabled: (
+      border: color(default, dark),
+      color: color(default, dark),
+      bg: color(default, light),
+      outline: transparent
+    ),
+    hover: (
+      border: color(default, light),
+      color: color(default, light),
+      bg: color(default, dark),
+      outline: transparent
+    ),
+    active: (
+      border: color(default, light),
+      color: color(default, light),
+      bg: color(default, dark),
+      outline: transparent
+    ),
+    focus: (
+      border: color(default, light),
+      color: color(default, light),
+      bg: color(default, dark),
+      outline: color(default, dark)
+    )
+  )
+);

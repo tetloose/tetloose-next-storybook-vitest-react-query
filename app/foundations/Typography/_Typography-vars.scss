@@ -1,0 +1,38 @@
+@use '@styles/settings' as *;
+
+$type: (
+  headings: (
+    font-size: (
+      h6: 16px,
+      h5: 20px,
+      h4: 25px,
+      h3: 30px,
+      h2: 35px,
+      h1: 40px
+    ),
+    line-height: (
+      h6: 16px,
+      h5: 20px,
+      h4: 25px,
+      h3: 30px,
+      h2: 35px,
+      h1: 40px
+    )
+  ),
+  body: (
+    font-size: (
+      sml: 14px,
+      med: 18px,
+      lrg: 20px,
+      xlrg: 24px,
+      xxlrg: 28px
+    ),
+    line-height: (
+      sml: 18px,
+      med: 22px,
+      lrg: 24px,
+      xlrg: 28px,
+      xxlrg: 32px
+    )
+  )
+);

@@ -1,0 +1,86 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Form/Select' />
+
+# Select
+
+The **Select** component is a custom form control that renders a native `<select />` element wrapped in a `Spacer` and a `<span>`. It supports customisable styling through colour variants, modifiers, and error states, and renders a list of options provided via the `options` prop.
+
+## Usage
+
+```tsx
+import { Select } from '@atoms/Form/_Select.component'
+import type { Options } from './Form.types'
+```
+
+```tsx
+  const selectOptions: Options[] = [
+    {
+      text: 'What is your favourite color',
+      value: ''
+    },
+    {
+      text: 'Blue',
+      value: 'blue'
+    },
+    {
+      text: 'Green',
+      value: 'green'
+    },
+    {
+      text: 'Hotpink',
+      value: 'hotpink'
+    }
+  ]
+
+  <Select
+    padding={{ default: 2 }}
+    color={color}
+    id={'favouriteColor'}
+    options={selectOptions}
+    error={!!favouriteColorError}
+    {...register('favouriteColor', { required: true })}
+  />
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling. These modifiers are appended to the component's base classes.
+
+### color
+
+- Type: `string`
+- Default: `'dark'`
+- Description: Specifies the colour variant of the select element. This is applied to both the container `<span>` and the <select /> element to control their appearance.
+
+### options
+
+- Type: `Options[]`
+- Default: None
+- Description: An array of option objects for the `<select />` element. Each option object should contain a text property (display text) along with any other native HTML attributes for an `<option />` element.
+
+### padding
+
+- Type: `Spacers`
+- Default: None
+- Description: Spacing applied to the component via the Spacer wrapper, controlling internal padding.
+
+### margin
+
+- Type: `Spacers`
+- Default: None
+- Description: Margin applied around the component via the Spacer wrapper.
+
+### error
+
+- Type: `boolean`
+- Default: `false`
+- Description: Indicates whether the select component is in an error state. When true, error styling is applied.
+
+### ...rest
+
+- Type: `SelectHTMLAttributes<HTMLSelectElement>`
+- Default: None
+- Description: Additional native HTML attributes for the `<select />` element.

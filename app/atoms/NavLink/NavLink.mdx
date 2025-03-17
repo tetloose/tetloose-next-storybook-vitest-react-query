@@ -1,0 +1,115 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/NavLink' />
+
+# NavLink
+
+The **NavLink** component is a custom navigation element that renders a `<Link>` wrapped in a `<Typography>` component. It allows for custom typography styling and supports standard link attributes for navigation.
+
+## Usage
+
+```tsx
+import { NavLink } from '@atoms/NavLink/NavLink.component'
+```
+
+```tsx
+  <NavLink
+    variant={'dark'}
+    to={'/about'}
+    rel={'noreferrer'}
+    target={'_self'}
+    title={'Learn more about us'}
+    typography={{ /* additional typography settings */ }}
+  >
+    Additional content here
+  </NavLink>
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, applied to the `<Typography>` component.
+
+### variant
+
+- Type: `Color`
+- Default: `'dark'`
+- Description: Determines the link variant for styling. This prop is passed as linkVariant to the `<Typography>` component.
+
+### typography
+
+- Type: `Omit<TypographyProps, 'modifiers' | 'tag' | 'richtext' | 'color' | 'text' | 'linkVariant'>`
+- Default: `None`
+- Description: An object containing typography settings for the link text. These settings customise the appearance of the link and are spread into the `<Typography>` component.
+
+### to
+
+- Type: `string`
+- Default: `None`
+- Description: The destination URL for the link. This prop is passed to the `<NavLink>` component to handle navigation.
+
+### rel
+
+- Type: `string`
+- Default: `'noreferrer'`
+- Description: Specifies the relationship between the current document and the linked resource, with a default of `'noreferrer'`.
+
+### target
+
+- Type: `string`
+- Default: `'_self'`
+- Description: Specifies where to open the linked URL. Defaults to `'_self'` to open in the same browsing context.
+
+### title
+
+- Type: `string`
+- Default: `None`
+- Description: The title attribute for the link, which is used as visible link text if no children are provided.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: `None`
+- Description: Additional content to be rendered inside the link, following the title text.
+
+### ...rest
+
+- Type: `NavLinkProps`
+- Default: `None`
+- Description: Additional native HTML attributes for the `<Link>` component.
+
+## Link styles
+
+### Extended styles
+
+`src/styles/extends/a.scss`
+
+### Link Color Variables
+
+`src/styles/settings/colors.scss`
+
+```scss
+  ...,
+  link: (
+    dark: (
+      color: $dark,
+      active: $red,
+      hover: #{color.adjust($red, $alpha: -0.4)},
+      focus: #{color.adjust($red, $alpha: -0.4)}
+    ),
+    light: (
+      color: $light,
+      active: $pink,
+      hover: #{color.adjust($pink, $alpha: -0.4)},
+      focus: #{color.adjust($pink, $alpha: -0.4)}
+    ),
+    grey: (
+      color: $grey,
+      active: $pink,
+      hover: #{color.adjust($pink, $alpha: -0.4)},
+      focus: #{color.adjust($pink, $alpha: -0.4)}
+    )
+  ),
+  ...
+```

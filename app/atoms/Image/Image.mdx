@@ -1,0 +1,110 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Image' />
+
+# Image
+
+The **Image** component is a custom image component that uses `LazyLoadImage` to render images with lazy loading and responsive behaviour. It supports breakpoints for image size, ratio, and position, along with different source options for desktop, tablet, and mobile devices. A placeholder image and blur effect can also be applied for a smoother user experience.
+
+## Usage
+
+```tsx
+import { Image } from '@atoms/Image/Image.component'
+```
+
+```tsx
+import Desktop from '@images/test/desktop.jpg'
+import Tablet from '@images/test/tablet.jpg'
+import Mobile from '@images/test/mobile.jpg'
+import Placeholder from '@images/test/Placeholder.jpg'
+```
+
+```tsx
+<Image
+  modifiers={['custom-class']}
+  src={Desktop} // this overrides desktop, tablet and mobile
+  desktop={Desktop}
+  tablet={Tablet}
+  mobile={Mobile}
+  placeholder={Placeholder}
+  width={600}
+  height={400}
+  ratio={{ default: '16x9' }}
+  position={{ default: 'center-bottom' }}
+  size={{ default: 'cover' }}
+  alt={'Descriptive alternate text'}
+  blur={true}
+/>
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling. These modifiers are appended to the component's base classes.
+
+### position
+
+- Type: `BreakpointImagePosition`
+- Default: None
+- Description: Responsive positioning settings applied via breakpoint utilities. This prop allows you to control the image's position at different breakpoints.
+
+### size
+
+- Type: `BreakpointImageSize`
+- Default: None
+- Description: Responsive sizing settings applied via breakpoint utilities. This prop adjusts the image's size based on viewport breakpoints.
+
+### ratio
+
+- Type: `BreakpointRatios`
+- Default: None
+- Description: Responsive ratio settings applied via breakpoint utilities. It maintains the image's aspect ratio at different breakpoints.
+
+### alt
+
+- Type: `string`
+- Default: None
+- Description: Alternate text for the image, which is important for accessibility and SEO.
+
+### width
+
+- Type: `number`
+- Default: None
+- Description: The width of the image in pixels. If not specified, the image will adjust automatically.
+
+### height
+
+- Type: `number`
+- Default: None
+- Description: The height of the image in pixels. If not specified, the image will adjust automatically.
+
+### desktop
+
+- Type: `string`
+- Default: None
+- Description: URL for the desktop version of the image. This is used in the responsive srcSet for larger screens.
+
+### tablet
+
+- Type: `string`
+- Default: None
+- Description: URL for the tablet version of the image. This is used in the responsive srcSet for medium-sized screens.
+
+### mobile
+
+- Type: `string`
+- Default: None
+- Description: URL for the mobile version of the image. If provided, this image will be used for smaller screens.
+
+### placeholder
+
+- Type: `string`
+- Default: None
+- Description: URL for a placeholder image displayed while the main image is loading.
+
+### blur
+
+- Type: `boolean`
+- Default: None
+- Description: Determines whether a blur effect should be applied during image loading. When set to true, the image will display a blur effect until fully loaded.

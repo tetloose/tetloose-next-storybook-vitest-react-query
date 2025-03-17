@@ -1,0 +1,87 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Table/Ti' />
+
+# Ti
+
+The **Ti** component is a flexible table cell element that renders a HTML element based on the `tag` prop. It utilises responsive breakpoints for text alignment and border styling, allowing for custom backgrounds and borders. If the `hide` prop is true, the component will not render.
+
+## Usage
+
+```tsx
+import { Ti } from '@atoms/Table/_T-i.component'
+```
+
+```tsx
+  <Ti tag={'thead'}>
+    <Ti tag={'tr'}>
+      <Ti
+        tag={'th'}
+        border={{
+          top: { default: true },
+          right: { med: true },
+          bottom: { med: true },
+          left: { med: true }
+        }}
+        borderColor={'dark'}
+      >
+        Table Text
+      </Ti>
+    </Ti>
+  </Ti>
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling. These modifiers are appended to the component's base classes.
+
+### tag
+
+- Type: `string`
+- Default: `'td'`
+- Description: The HTML tag to render, such as 'td' or 'th'.
+
+### bg
+
+- Type: `string`
+- Default: None
+- Description: Specifies the background colour of the cell. This prop applies a corresponding CSS class for background styling.
+
+### border
+
+- Type: `(Depends on the Border type)`
+- Default: None
+- Description: Defines the border style for the cell. Used together with borderColor to apply border classes.
+
+### borderColor
+
+- Type: `string`
+- Default: None
+- Description: Specifies the colour of the cell border. This prop works in conjunction with border to determine the border appearance.
+
+### textAlign
+
+- Type: `BreakpointTextAlign`
+- Default: None
+- Description: Responsive text alignment settings applied via breakpoint utilities, allowing you to control the alignment at various screen sizes.
+
+### hide
+
+- Type: `boolean`
+- Default: None
+- Description: If set to true, the component will not be rendered.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Child elements or content to be rendered inside the component.
+
+### ...rest
+
+- Type: `Additional native HTML attributes`
+- Default: None
+- Description: Any extra attributes provided will be passed to the underlying HTML element.
+

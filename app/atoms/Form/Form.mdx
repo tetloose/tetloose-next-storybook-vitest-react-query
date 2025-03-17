@@ -1,0 +1,329 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Form' />
+
+# Form
+
+The **Form** component is a custom form container that renders a native `<form />` element. It supports additional customisation through modifiers, child elements, and a specialised `inputs` object that enables configuration of nested form elements such as submit and reset buttons.
+
+## Usage
+
+```tsx
+import { useForm } from 'react-hook-form'
+import { useNotification } from '@hooks/Notification/use-notification.hooks'
+import { Form } from '@atoms/Form/Form.component'
+import { Textarea } from '@atoms/Form/_Textarea.component'
+import { Select } from '@atoms/Form/_Select.component'
+import { Radio } from '@atoms/Form/_Radio.component'
+import { Label } from '@atoms/Form/_Label.component'
+import { Input } from '@atoms/Form/_Input.component'
+import { Checkbox } from '@atoms/Form/_Checkbox.component'
+import type { SubmitHandler } from 'react-hook-form'
+import type { Options } from './Form.types'
+```
+
+```tsx
+  type Inputs = {
+    username: string
+    password: string
+    message: string
+    colors: string
+    accept: string
+    favouriteColor: string
+  }
+
+  const defaultValues: Inputs = {
+    username: '',
+    password: '',
+    message: '',
+    colors: '',
+    accept: '',
+    favouriteColor: ''
+  }
+
+  const notify = useNotification()
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, isValid }
+  } = useForm<Inputs>({ defaultValues })
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (!data) return
+
+    const { favouriteColor, username, password, message, colors, accept } = data
+
+    if (favouriteColor) notify(`favouriteColor: ${favouriteColor}`, 'success')
+
+    if (username) notify(`username: ${username}`, 'success')
+
+    if (password) notify(`password: ${password}`, 'success')
+
+    if (password) notify(`message: ${message}`, 'success')
+
+    if (colors) notify(`colors: ${colors}`, 'success')
+
+    if (accept) notify(`accept: ${accept && 'accepted'}`, 'success')
+
+    reset()
+  }
+
+  const handleReset = () => {
+    notify('Form Reset', 'success')
+
+    reset()
+  }
+
+  const {
+    favouriteColor: favouriteColorError,
+    username: usernameError,
+    password: passwordError,
+    colors: colorsError,
+    message: messageError,
+    accept: acceptError
+  } = errors
+
+  const selectOptions: Options[] = [
+    {
+      text: 'What is your favourite color',
+      value: ''
+    },
+    {
+      text: 'Blue',
+      value: 'blue'
+    },
+    {
+      text: 'Green',
+      value: 'green'
+    },
+    {
+      text: 'Hotpink',
+      value: 'hotpink'
+    }
+  ]
+```
+
+```tsx
+  <Form
+    onSubmit={handleSubmit(onSubmit)}
+    onReset={handleReset}
+    inputs={{
+      columnOptions: {
+        display: {
+          default: 'flex'
+        },
+        gap: {
+          default: 6
+        },
+        justify: { default: 'flex-end' },
+        padding: {
+          top: {
+            default: 6
+          }
+        }
+      },
+      submitButton: {
+        variant: 'primary',
+        label: 'Submit',
+        disabled: !isValid
+      },
+      resetButton: {
+        variant: 'secondary',
+        label: 'reset'
+      }
+    }}
+  >
+    <Label
+      color={'dark'}
+      htmlFor={'favouriteColor'}
+      label={{
+        text: `Favourite Color${favouriteColorError ? ': (required)' : ''}`,
+        size: 'body-med',
+        fontWeight: 'medium'
+      }}
+      error={!!favouriteColorError}
+    />
+    <Select
+      padding={{ default: 2 }}
+      color={'dark'}
+      id={'favouriteColor'}
+      options={selectOptions}
+      error={!!favouriteColorError}
+      {...register('favouriteColor', { required: true })}
+    />
+    <Label
+      padding={{ default: 6 }}
+      color={'dark'}
+      htmlFor={'username'}
+      label={{
+        text: `Username${usernameError ? ': (required)' : ''}`,
+        size: 'body-med',
+        fontWeight: 'medium'
+      }}
+      error={!!usernameError}
+    />
+    <Input
+      padding={{ default: 2 }}
+      color={'dark'}
+      placeholder={'Username'}
+      id={'username'}
+      error={!!usernameError}
+      {...register('username', { required: true })}
+    />
+    <Label
+      padding={{ default: 6 }}
+      color={'dark'}
+      htmlFor={'password'}
+      label={{
+        text: `Password${passwordError ? ': (required)' : ''}`,
+        size: 'body-med',
+        fontWeight: 'medium'
+      }}
+      error={!!passwordError}
+    />
+    <Input
+      padding={{ default: 2 }}
+      color={'dark'}
+      type={'password'}
+      placeholder={'Password'}
+      id={'password'}
+      error={!!passwordError}
+      {...register('password', { required: true })}
+    />
+    <Label
+      padding={{ default: 6 }}
+      color={'dark'}
+      htmlFor={'yellow'}
+      label={{
+        text: `Select Color${colorsError ? ': (required)' : ''}`,
+        size: 'body-med',
+        fontWeight: 'medium'
+      }}
+      error={!!colorsError}
+    />
+    <Radio
+      padding={{ default: 2 }}
+      color={'dark'}
+      htmlFor={'yellow'}
+      id={'yellow'}
+      value={'yellow'}
+      label={{
+        text: 'Yellow',
+        size: 'body-med'
+      }}
+      error={!!colorsError}
+      {...register('colors', { required: true })}
+    />
+    <Radio
+      padding={{ default: 2 }}
+      color={'dark'}
+      htmlFor={'blue'}
+      id={'blue'}
+      value={'blue'}
+      label={{
+        text: 'Blue',
+        size: 'body-med'
+      }}
+      error={!!colorsError}
+      {...register('colors', { required: true })}
+    />
+    <Radio
+      padding={{ default: 2 }}
+      color={'dark'}
+      htmlFor={'green'}
+      id={'green'}
+      value={'green'}
+      label={{
+        text: 'Green',
+        size: 'body-med'
+      }}
+      error={!!colorsError}
+      {...register('colors', { required: true })}
+    />
+    <Label
+      padding={{ default: 6 }}
+      color={'dark'}
+      htmlFor={'message'}
+      label={{
+        text: `Message${messageError ? ': (required)' : ''}`,
+        size: 'body-med',
+        fontWeight: 'medium'
+      }}
+      error={!!messageError}
+    />
+    <Textarea
+      padding={{ default: 2 }}
+      color={'dark'}
+      placeholder={'Enter your message'}
+      id={'message'}
+      error={!!messageError}
+      {...register('message', { required: true })}
+    />
+    <Label
+      padding={{ default: 6 }}
+      color={'dark'}
+      htmlFor={'accept'}
+      label={{
+        text: `Accept ${acceptError ? ': (required)' : ''}`,
+        size: 'body-med',
+        fontWeight: 'medium'
+      }}
+      error={!!acceptError}
+    />
+    <Checkbox
+      padding={{ default: 2 }}
+      color={'dark'}
+      htmlFor={'accept'}
+      id={'accept'}
+      value={'true'}
+      label={{
+        text: 'Accept',
+        size: 'body-med'
+      }}
+      error={!!acceptError}
+      {...register('accept', { required: true })}
+    />
+    <Typography
+      tag={'p'}
+      color={'dark'}
+      size={'body-sml'}
+      padding={{ default: 10 }}
+      richText={`<p>Watch Favourite Color: ${watch('favouriteColor') ? watch('favouriteColor') : ''}<br />
+        Watch Username: ${watch('username') ? watch('username') : ''}<br />
+        Watch Password: ${watch('password') ? watch('password') : ''}<br />
+        Watch Colors: ${watch('colors') ? watch('colors') : ''}<br />
+        Watch Message: ${watch('message') ? watch('message') : ''}<br />
+        Watch Accept: ${watch('accept') ? watch('accept') : ''}</p>`}
+    />
+  </Form>
+```
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling, appended to the base form class.
+
+### inputs
+
+- Type: `{ columnOptions?: ColumnProps; submitButton?: ButtonProps; resetButton?: ButtonProps }`
+- Default: None
+- Description: An object for configuring additional form inputs.
+- columnOptions: Properties passed to the Column component for layout customisation.
+- submitButton: Props for the submit button rendered as a `<Button />` with type={'submit'}.
+- resetButton: Props for the reset button rendered as a `<Button />` with type={'reset'}.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Child elements to be rendered inside the form, typically form fields and other components.
+
+### ...rest
+
+- Type: `FormHTMLAttributes<HTMLFormElement>`
+- Default: None
+- Description: Additional native HTML attributes for the `<form />` element.

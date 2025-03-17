@@ -1,0 +1,84 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Documentation/Architecture" />
+
+# Architecture
+
+In the context of coding and component-based architecture, the terms "Foundation", "atom", "component" and "layout" are often used to describe different levels of abstraction and reusability within a webpage / web-app.
+
+## Foundations - (Design Tokens):
+
+### What They Are:
+
+Variables, colors, typography settings, spacing values, and other style constants are often referred to as design tokens. They serve as the foundational elements or “DNA” of your design system.
+
+### Purpose:
+
+- **Consistency:** Ensures a uniform look and feel across all UI components.
+- **Maintainability:** Changing a variable (like a primary color) in one place updates the design everywhere it’s used.
+Scalability: Facilitates theming and customization, allowing you to adapt your UI for different brands or modes (e.g., dark mode).
+
+## Atoms:
+
+### What They Are:
+
+The most basic building blocks of your UI. In a React app, atoms can be individual HTML elements (or very simple React components) like buttons, input fields, labels, icons, and typography elements.
+
+### Purpose:
+
+- **Reusability:** Atoms are designed to be reused across the app.
+- **Simplicity:** They are not broken down further; they provide the foundational elements.
+- **Consistency:** Using a well-defined set of atoms ensures a consistent look and feel.
+
+## 2. Components - (Molecules & Organisms):
+
+### What They Are:
+
+High-level, self-contained building block that encapsulates a specific functionality or feature.
+
+Components can be composed of Foundations, Atoms, and other components, forming a hierarchy of abstraction.
+
+They are often reusable and modular, making it easy to maintain and scale a codebase.
+
+## Layouts (Templates & Pages)
+
+### Definition:
+
+Layouts represent the overall structure and composition of the UI. They provide context for where and how your components are arranged on a page. At this point you should just be piecing together **Components** into a desired **layout**. It's ok to write some functional code here, but keep it to a minimal, as functional code will happen at the **Component** level
+
+### Templates:
+
+Define the page structure by positioning **atoms** and **components** in a layout without real content, although you can pass down content as props here.
+
+Concrete instances of templates filled with actual content. They are used for testing the design with real data and fine-tuning the UI.
+
+### Key Points:
+
+- Structure: Layouts organize the placement and relationship of components to create a coherent and responsive interface.
+- Responsiveness: They handle how components adapt to various screen sizes and devices.
+- Context: Layouts provide the overall context that ties individual components together into a full UI experience.
+
+### Examples:
+
+Layout: A blog page layout that includes a header, sidebar, and main content area, where each area is a placeholder for more complex components.
+Page: A fully rendered blog page with actual articles, images, and navigation items populated within the template structure.
+
+## Implementing Atomic Design in React
+
+When building your React framework with Atomic Design:
+
+### Organize Your Project Structure:
+
+Create directories for **foundations**, **atoms**, **components** and **layouts**. This helps in maintaining a clear hierarchy and makes it easier to locate and reuse components.
+
+### Focus on Reusability:
+
+Ensure that each **atom** and **component** is as **generic** as possible. Use props to customize behavior and appearance, so they can adapt to different contexts.
+
+### Encapsulate Styles and Behavior:
+
+Use **CSS-in-JS**, **CSS modules**, or your preferred styling strategy to keep styles modular and scoped to individual components.
+
+### Test at Multiple Levels:
+
+Write unit tests for **foundations**, **atoms** and **components** and integration tests for layouts to ensure that your UI remains consistent and bug-free as it scales.

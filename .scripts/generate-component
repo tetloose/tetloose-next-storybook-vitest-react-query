@@ -1,0 +1,93 @@
+#!/bin/bash
+#generate-component
+
+clear
+
+read -p "Enter component location:
+
+[0] Foundation
+[1] Atom
+[2] Component
+[3] Layout
+
+[0/1/2/3]: " COMPONENT_SWITCH
+
+if [ "$COMPONENT_SWITCH" = "0" ]; then
+  DIR="app/foundations"
+  TITLE="Foundations"
+  IMPORT_NAME="foundations"
+elif [ "$COMPONENT_SWITCH" = "1" ]; then
+  DIR="app/atoms"
+  TITLE="Atoms"
+  IMPORT_NAME="atoms"
+elif [ "$COMPONENT_SWITCH" = "2" ]; then
+  DIR="app/components"
+  TITLE="Components"
+  IMPORT_NAME="components"
+elif [ "$COMPONENT_SWITCH" = "3" ]; then
+  DIR="app/layouts"
+  TITLE="Layouts"
+  IMPORT_NAME="layouts"
+fi
+
+if [ "$COMPONENT_SWITCH" ]; then
+  read -p "Enter component name i.e Navigation bar (*no hyphens*) press [ENTER]: " COMPONENT
+
+  # EXPORT NAME
+  EXPORT_NAME=$(echo "$COMPONENT" | perl -pe '$_ = lc')                       # lowercase
+  EXPORT_NAME=$(echo "$EXPORT_NAME" | perl -pe 's/ /-/g')                     # spaces to hyphens
+  EXPORT_NAME=$(echo "$EXPORT_NAME" | perl -pe 's/(^|-)(\w)/\U$2/g')          # Uppercase first segment
+
+  # COMPONENT NAME
+  COMPONENT_NAME=$(echo "$COMPONENT" | perl -pe '$_ = lc')                    # Lowercase
+  COMPONENT_NAME=$(echo "$COMPONENT_NAME" | perl -pe 's/(^|-)(\w)/\U$2/g')    # Uppercase first segment
+  COMPONENT_NAME=$(echo "$COMPONENT_NAME" | perl -pe 's/ /-/g')               # Spaces to hyphens
+
+  # CLASS NAME
+  CLASS_NAME=$(echo "$COMPONENT" | perl -pe '$_ = lc')                        # Lowercase
+  CLASS_NAME=$(echo "$CLASS_NAME" | perl -pe 's/ /-/g')                       # Spaces to hyphens
+
+  # NICE NAME
+  NICE_NAME=$(echo "$COMPONENT" | perl -pe '$_ = lc')                         # lowercase
+  NICE_NAME=$(echo "$NICE_NAME" | perl -pe 's/-/ /g')                         # Convert hyphens to spaces
+  NICE_NAME=$(echo "$NICE_NAME" | perl -pe 's/(^|-)(\w)/\U$2/g')              # Uppercase first segment
+
+  # TITLE NAME
+  TITLE_NAME="$TITLE/$NICE_NAME"
+
+  # Create directory
+  mkdir -p $DIR/"$COMPONENT_NAME"
+
+  # Copy remplates to directory
+  cp .scripts/template/component.tsx $DIR/$COMPONENT_NAME/$COMPONENT_NAME.component.tsx
+  cp .scripts/template/readme.mdx $DIR/$COMPONENT_NAME/$COMPONENT_NAME.mdx
+  cp .scripts/template/stories.tsx $DIR/$COMPONENT_NAME/$COMPONENT_NAME.stories.tsx
+  cp .scripts/template/styles.scss $DIR/$COMPONENT_NAME/$COMPONENT_NAME.module.scss
+  cp .scripts/template/test.tsx $DIR/$COMPONENT_NAME/$COMPONENT_NAME.test.tsx
+  cp .scripts/template/types.ts $DIR/$COMPONENT_NAME/$COMPONENT_NAME.types.ts
+
+  # Find and Replace
+  # Component.ts
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.component.tsx" -exec sed -i '' -e "s|EXPORT_NAME|$EXPORT_NAME|g" {} +
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.component.tsx" -exec sed -i '' -e "s|COMPONENT_NAME|$COMPONENT_NAME|g" {} +
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.component.tsx" -exec sed -i '' -e "s|CLASS_NAME|$CLASS_NAME|g" {} +
+  # Stories.mdx
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.mdx" -exec sed -i '' -e "s|EXPORT_NAME|$EXPORT_NAME|g" {} +
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.mdx" -exec sed -i '' -e "s|TITLE_NAME|$TITLE_NAME|g" {} +
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.mdx" -exec sed -i '' -e "s|IMPORT_NAME|$IMPORT_NAME|g" {} +
+  # Stories.tsx
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.stories.tsx" -exec sed -i '' -e "s|EXPORT_NAME|$EXPORT_NAME|g" {} +
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.stories.tsx" -exec sed -i '' -e "s|COMPONENT_NAME|$COMPONENT_NAME|g" {} +
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.stories.tsx" -exec sed -i '' -e "s|TITLE_NAME|$TITLE_NAME|g" {} +
+  # Styles.scss
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.module.scss" -exec sed -i '' -e "s|CLASS_NAME|$CLASS_NAME|g" {} +
+  # Test.tsx
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.test.tsx" -exec sed -i '' -e "s|EXPORT_NAME|$EXPORT_NAME|g" {} +
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.test.tsx" -exec sed -i '' -e "s|COMPONENT_NAME|$COMPONENT_NAME|g" {} +
+  # Types.ts
+  find "$DIR/$COMPONENT_NAME/" -type f -name "$COMPONENT_NAME.types.ts" -exec sed -i '' -e "s|EXPORT_NAME|$EXPORT_NAME|g" {} +
+
+  yarn lint:fix
+else
+  echo "Please check your input, and try again"
+fi

@@ -1,0 +1,91 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Atoms/Button' />
+
+# Button
+
+The **Button** component is a versatile UI element that can either render as a native `<button />` element or as a `<NavLink />` (from react-router-dom) when a to prop is provided. It supports custom variants, responsive styling, and additional modifiers for fine-tuning alignment, justification, and width.
+
+## Usage
+
+```tsx
+import { Button } from '@atoms/Button/Button.component'
+```
+
+```tsx
+<Button
+  variant={'primary'}
+  label={'Submit'}
+  onClick={() => console.log('Primary Button Clicked')}
+/>
+
+<Button
+  variant={'secondary'}
+  to={'/dashboard'}
+  label={'Go to Dashboard'}
+/>
+
+<Button>
+  {children}
+</Button>
+```
+
+### variant
+
+- Type: `'primary' | 'secondary'`
+- Default: None
+- Description: Sets the visual style of the button.
+
+### type
+
+- Type: `'button' | 'submit' | 'reset'`
+- Default: `button`
+- Description: Specifies the native button type when rendered as a `<button />` element.
+
+### label
+
+- Type: `string`
+- Default: None
+- Description: The text displayed inside the button. Can be used on its own or in combination with children.
+
+### to
+
+- Type: `string`
+- Default: None
+- Description: When provided, the button is rendered as a `<NavLink />` for routing instead of a native button.
+
+### modifiers
+
+- Type: `string[]`
+- Default: `[]`
+- Description: Additional CSS classes for custom styling.
+
+### align
+
+- Type: `BreakpointFlexAlign`
+- Default: None
+- Description: Responsive alignment settings applied via breakpoint utilities.
+
+### justify
+
+- Type: `BreakpointJustify`
+- Default: None
+- Description: Responsive justification settings applied via breakpoint utilities.
+
+### width
+
+- Type: `{ width?: { [key in Breakpoints]?: 'auto' | 'full' } }`
+- Default: None
+- Description: Responsive width configuration, allowing the button to adapt to different breakpoints.
+
+### children
+
+- Type: `React.ReactNode`
+- Default: None
+- Description: Additional content to be rendered inside the button.
+
+### ...rest
+
+- Type: `ButtonHTMLAttributes<HTMLElement> | Omit<NavLinkProps, 'title' | 'to'>`
+- Default: None
+- Description: Other native button attributes or NavLink props (except title and to).

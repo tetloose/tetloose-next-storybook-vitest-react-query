@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode",
+    "Fooxly.workspace",
+    "dsznajder.es7-react-js-snippets",
+    "infeng.vscode-react-typescript",
+    "burkeholland.simple-react-snippets",
+    "OfHumanBondage.react-proptypes-intellisense",
+    "unifiedjs.vscode-mdx"
+  ]
+}

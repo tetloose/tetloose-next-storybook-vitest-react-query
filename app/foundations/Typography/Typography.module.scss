@@ -1,0 +1,244 @@
+@use '@styles/settings' as *;
+@use './Typography-vars' as *;
+@use './Typography-extends' as *;
+
+.typography {
+  $typography: &;
+
+  &.h6 {
+    @extend %type-h6;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.h5 {
+    @extend %type-h5;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.h4 {
+    @extend %type-h4;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.h3 {
+    @extend %type-h3;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.h2 {
+    @extend %type-h2;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.h1 {
+    @extend %type-h1;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.ol {
+    @extend %type-ol;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.ul {
+    @extend %type-ul;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.body-sml {
+    @extend %type-body-sml;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.body-med {
+    @extend %type-body-med;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.body-lrg {
+    @extend %type-body-lrg;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.body-xlrg {
+    @extend %type-body-xlrg;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  &.body-xxlrg {
+    @extend %type-body-xxlrg;
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+  }
+
+  @extend %display;
+  @extend %a;
+  @extend %hr;
+  @extend %color;
+  @extend %text-align;
+  @extend %white-space;
+  @extend %text-transform;
+  @extend %font-style;
+  @extend %font-weight;
+
+  &.is-rich-text {
+    h6 {
+      @extend %type-h6;
+    }
+
+    h5 {
+      @extend %type-h5;
+    }
+
+    h4 {
+      @extend %type-h4;
+    }
+
+    h3 {
+      @extend %type-h3;
+    }
+
+    h2 {
+      @extend %type-h2;
+    }
+
+    h1 {
+      @extend %type-h1;
+    }
+
+    ol {
+      @extend %type-ol;
+    }
+
+    ul {
+      @extend %type-ul;
+    }
+
+    p,
+    li {
+      @extend %type-body-med;
+    }
+
+    h6,
+    h5,
+    h4,
+    h3,
+    h2,
+    h1,
+    p {
+      @extend %spacer-padding-5;
+    }
+
+    ol,
+    ul {
+      @extend %spacer-padding-4;
+
+      li {
+        @extend %spacer-padding-1;
+      }
+    }
+
+    strong {
+      @extend %f-bold;
+    }
+
+    em {
+      @extend %f-italic;
+    }
+
+    > *:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+}

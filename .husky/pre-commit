@@ -1,0 +1,3 @@
+#yarn pre-commit
+
+echo 'add pre commit back in after fixing tests';

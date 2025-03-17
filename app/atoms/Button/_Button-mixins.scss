@@ -1,0 +1,26 @@
+@use '@styles/settings' as *;
+@use './Button-vars' as *;
+
+@mixin button {
+  display: inline-flex;
+
+  @include sizing('padding', [size(4), size(8)]);
+  @include sizing('border-width', size(deep-get($button, border, width)));
+  @include sizing('outline-width', size(deep-get($button, outline, width)));
+  @include sizing('font-size', deep-get($button, font-size));
+  @include sizing('line-height', deep-get($button, line-height));
+  @include sizing('letter-spacing', deep-get($button, letter-spacing));
+  @extend %justify;
+  @extend %align;
+  @extend %f-heading;
+  @extend %f-bold;
+  @extend %f-uppercase;
+
+  @include mq-hover {
+    @include transition('all');
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}

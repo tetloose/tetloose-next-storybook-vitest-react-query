@@ -1,0 +1,40 @@
+@use '@styles/settings' as *;
+@use 'sass:map';
+
+.loading {
+  display: inline-block;
+  border-right-style: solid;
+  border-right-color: transparent;
+  border-radius: vars(radius, round);
+  animation: kf-loader 1s linear infinite;
+
+  @include sizing('border-right-width', size(0.75));
+  @include sizing('border-top-width', size(0.75));
+  @include sizing('width', size(12));
+  @include sizing('height', size(12));
+
+  @each $color, $value in map.get($colors, default) {
+    &.color-#{'' + $color} {
+      border-right-color: color(default, #{$color});
+    }
+  }
+
+  &.is-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @extend %z-index-xlrg;
+  }
+}
+
+@keyframes kf-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

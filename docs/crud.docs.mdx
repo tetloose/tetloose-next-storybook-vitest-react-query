@@ -1,0 +1,371 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/CRUD" />
+
+# API URL Utilities
+
+The **API URL Utilities** module provides helper functions and constants for constructing API endpoints and managing query keys for use with React Query. These utilities help standardise API URL construction and ensure consistency across your API requests.
+
+## apiUrl
+
+The `apiUrl` function generates an API endpoint URL based on the provided parameters. It starts with a base URL from `apiUrls`, then appends a resource segment and query parameters as needed.
+
+### Usage
+
+```tsx
+import { apiUrl } from '@crud/Api/api-url.crud'
+
+const url = apiUrl({
+  url: 'content',
+  resource: 'articles',
+  params: 'author=JohnDoe&sort=desc',
+  page: 2
+})
+```
+
+# request
+
+The **request** function is a lightweight utility for performing API calls using the native `fetch` API. It supports standard HTTP methods and automatically handles JSON serialisation for both the request body and the response. If the network request fails (i.e. if the response is not OK), it throws a `"Network error"`.
+
+## Usage
+
+```tsx
+import { request } from '@crud/Request/request.crud'
+
+const fetchData = async () => {
+  try {
+    const data = await request({
+      url: 'https://api.example.com/data',
+      method: 'GET'
+    })
+    console.log(data)
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+}
+```
+
+### url
+
+- Type: `string`
+- Default: None
+- Description: The endpoint URL to which the request is sent.
+
+### method
+
+- Type: `RequestMethod ('GET' | 'PUT' | 'PATCH' | 'POST' | 'DELETE')`
+- Default: None
+- Description: The HTTP method to use for the request.
+
+### body
+
+- Type: `Record<string, unknown> (optional)`
+- Default: None
+- Description: An optional object that will be JSON-stringified and sent as the request body. Typically used with methods such as `POST, PUT, or PATCH`.
+
+### Return Value
+
+- Type: `Promise<unknown>`
+- Description: A promise that resolves with the JSON-parsed response from the API. If the response status is not OK, the promise is rejected with a "Network error".
+
+# useRead Hook
+
+The **useRead** hook is a custom hook that leverages React Query to fetch data from an API endpoint. It dynamically constructs the API URL based on the provided parameters and performs a GET request using a custom `request` function. Additionally, it integrates with a notification system to display errors if the request fails.
+
+## Usage
+
+```tsx
+import { useRead } from '@crud/Read/use-read.crud'
+
+const MyComponent = () => {
+  const { data, isPending, isFetching, isSuccess, error, refetch } = useRead({
+    url: 'content',                     // Base API identifier (e.g. 'content')
+    resource: 'articles',               // Optional resource to target a specific endpoint
+    params: 'author=JohnDoe&sort=desc', // Query parameters as a URL-encoded string
+    queryKey: 'customContentKey',       // Optional custom query key for caching
+    queryRefetch: 30000,                // Refetch interval in milliseconds (or false to disable)
+    enableQuery: true                   // Set to false to disable the query
+  })
+
+  if (isPending) return <div>Loading...</div>
+  if (error) return <div>Error loading data</div>
+
+  return (
+    <div>
+      {isSuccess && data && (
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      )}
+      <button onClick={refetch}>Refetch Data</button>
+    </div>
+  )
+}
+```
+
+## Parameters
+
+### url
+
+- Type: `ApiUrls ('content')`
+- Description: The base API identifier used to retrieve the corresponding URL from the apiUrls constant.
+
+### resource
+
+- Type: `string (optional)`
+- Description: An optional resource path that is appended to the base URL to target a specific API endpoint.
+
+### params
+
+- Type: `string (optional)`
+- Description: A URL-encoded string of query parameters `(e.g. 'key1=value1&key2=value2')` that will be appended to the API URL.
+
+### queryKey
+
+- Type: `string (optional)`
+- Description: A custom query key for React Query caching. If not provided, the key is derived from the base URL using apiQueryKey.
+
+### queryRefetch
+
+- Type: `number | false (optional)`
+- Default: `false`
+- Description: The interval `(in milliseconds)` at which the query should automatically refetch data. Set to false to disable automatic refetching.
+
+### enableQuery
+
+- Type: `boolean (optional)`
+- Description: A flag to enable or disable the query. When set to false, the query will not execute.
+
+### Return Values
+
+The hook returns an object containing:
+
+- **data**: The data fetched from the API.
+- **isPending**: A boolean indicating if the query is in a pending state.
+- **isFetching**: A boolean indicating if the query is currently fetching data.
+- **isSuccess**: A boolean indicating if the query was successful.
+- **error**: Any error encountered during the query.
+- **refetch**: A function to manually refetch the data.
+
+# useMutate Hook
+
+The **useMutate** hook is a custom React hook that simplifies performing API mutations using React Query. It dynamically constructs the API endpoint using provided parameters and a helper function, executes the mutation via a custom `request` function, and automatically invalidates related queries on success. Additionally, it integrates with a notification system to display error messages when the mutation fails.
+
+## Usage
+
+```tsx
+import { useMutate } from '@crud/Mutate/use-mutate.crud'
+
+const MyComponent = () => {
+  const { isPending, isSuccess, error, mutation } = useMutate({
+    url: 'content',              // Base API identifier
+    resource: 'articles',        // Optional resource path
+    params: 'author=JaneDoe',    // Optional URL-encoded query parameters
+    method: 'POST',              // HTTP method: 'POST', 'PUT', 'PATCH', or 'DELETE'
+    queryKey: 'customContentKey' // Optional custom query key for caching
+  })
+
+  const handleSubmit = async () => {
+    try {
+      await mutation.mutateAsync({ title: 'New Article', body: 'Article content' })
+    } catch (error) {
+      console.error('Mutation error', error)
+    }
+  }
+
+  return (
+    <div>
+      <button onClick={handleSubmit}>Submit</button>
+      {isPending && <p>Submitting...</p>}
+      {isSuccess && <p>Submission successful!</p>}
+      {error && <p>Error occurred.</p>}
+    </div>
+  )
+}
+```
+
+## Parameters
+
+### url
+
+- Type: `ApiUrls (e.g. 'content')`
+- Description: The base API identifier used to retrieve the corresponding URL from the apiUrls mapping.
+
+### resource
+
+- Type: `string (optional)`
+- Description: An optional resource path appended to the base URL to target a specific endpoint.
+
+### params
+
+- Type: `string (optional)`
+- Description: A URL-encoded string of query parameters (e.g. 'key1=value1&key2=value2') that is appended to the API URL.
+
+### method
+
+- Type: `Methods ('PUT' | 'PATCH' | 'POST' | 'DELETE')`
+- Description: The HTTP method to use for the mutation request.
+
+### queryKey
+
+- Type: `string (optional)`
+- Description: A custom query key for React Query caching. If not provided, the key is derived from apiQueryKey using the base URL.
+
+## Return Values
+
+The hook returns an object containing:
+
+### isPending
+
+- Type: `boolean`
+- Description: Indicates whether the mutation is currently in a pending state.
+
+### isSuccess
+
+- Type: `boolean`
+- Description: Indicates whether the mutation was successful.
+
+### error
+
+- Type: `HttpStatus`
+- Description: Contains error details if the mutation fails.
+
+### mutation
+
+- Type: `React Query mutation object`
+- Description: The full mutation object returned by useMutation, including methods such as mutate and mutateAsync.
+
+# usePagination Hook
+
+The **usePagination** hook is a custom hook that leverages React Query’s `useInfiniteQuery` to fetch paginated data from an API endpoint. It dynamically constructs the API URL using the `apiUrl` utility and handles pagination by maintaining the current page state and providing a function to fetch the next page. In addition, it supports automatic refetch intervals, error notifications, and conditional query execution.
+
+## Usage
+
+```tsx
+import { usePagination } from '@crud/Pagination/use-pagination.crud'
+
+const PaginatedComponent = () => {
+  const {
+    data,
+    hasNextPage,
+    isFetchingNextPage,
+    handleNextPage,
+    page,
+    error,
+    refetch
+  } = usePagination({
+    url: 'content',                     // Base API identifier, e.g. 'content'
+    resource: 'articles',               // Optional resource appended to the base URL
+    params: 'author=JaneDoe&sort=asc',  // URL-encoded query parameters
+    pages: 5,                           // Total number of pages available
+    queryRefetch: 30000,                // Refetch interval in milliseconds (set to 0 to disable)
+    enabled: true                       // Enable or disable the query
+  })
+
+  return (
+    <div>
+      {data && data.pages.map((pageData, index) => (
+        <div key={index}>
+          {/* Render paginated content */}
+          {JSON.stringify(pageData)}
+        </div>
+      ))}
+      {hasNextPage && (
+        <button onClick={handleNextPage}>
+          Load Next Page (current page: {page})
+        </button>
+      )}
+      {isFetchingNextPage && <p>Loading more...</p>}
+      {error && <p>Error loading data</p>}
+      <button onClick={() => refetch()}>Refetch</button>
+    </div>
+  )
+}
+```
+
+## Parameters
+
+### url
+
+- Type: `ApiUrls (e.g. 'content')`
+- Default: None
+- Description: The base API identifier used to look up the URL from the apiUrls constant.
+
+### method
+
+- Type: `RequestMethod ('GET', 'POST', etc.)`
+- Default: 'GET'
+- Description: The HTTP method used to fetch the data. Defaults to 'GET'.
+
+### resource
+
+- Type: `string (optional)`
+- Default: None
+- Description: An optional resource path that is appended to the base URL to target a specific endpoint.
+
+### params
+
+- Type: `string (optional)`
+- Default: None
+- Description: A URL-encoded string of query parameters (e.g. 'key1=value1&key2=value2') that will be appended to the API URL.
+
+### pages
+
+- Type: `number`
+- Default: 1
+- Description: The total number of pages available for pagination. This value determines the upper bound for fetching additional pages.
+
+### queryKey
+
+- Type: `string (optional)`
+- Default: Derived from apiQueryKey if not provided.
+- Description: A custom query key for React Query caching. If omitted, the key is derived from the apiQueryKey corresponding to the provided url.
+
+### queryRefetch
+
+- Type: `number`
+- Default: 0
+- Description: The interval in milliseconds at which the query should refetch automatically. Set to 0 to disable automatic refetching.
+
+### enabled
+
+- Type: `boolean`
+- Default: true
+- Description: A flag to enable or disable the query. When set to false, the query will not execute.
+
+## Return Values
+
+The hook returns an object with the following properties:
+
+### data
+
+- Type: `any`
+- Description: The data fetched from the API, organised into pages.
+
+### hasNextPage
+
+- Type: `boolean`
+- Description: Indicates whether there is another page available for fetching.
+
+### isFetchingNextPage
+
+- Type: `boolean`
+- Description: Indicates whether the next page is currently being fetched.
+
+### handleNextPage
+
+- Type: `() => void`
+- Description: A function to increment the current page and trigger fetching of the next page.
+
+### page
+
+- Type: `number`
+- Description: The current page number.
+
+### error
+
+- Type: `any`
+- Description: Contains any error encountered during the query execution.
+
+### refetch
+
+- Type: `() => void`
+- Description: A function to manually refetch the data.
