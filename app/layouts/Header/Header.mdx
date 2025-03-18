@@ -14,41 +14,22 @@ import { Meta } from '@storybook/blocks'
 - **GridItem, Row, Column**
   Offer layout and spacing utilities to build structured and responsive page sections.
 
-## Export
-
-`export default Header`
-
 ## Usage
 
-`src/App.tsx`
-
 ```tsx
-import { lazy, Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { useAnimate } from '@hooks/Animate/use-animate.hooks'
-import { navigation } from '@routes/navigation.routes'
-import { Grid } from '@foundations/Grid/Grid.component'
-import { Loading } from '@atoms/Loading/Loading.component'
+import dynamic from 'next/dynamic'
+import type { GlobalChildren } from '@global/global.types'
 
-const Header = lazy(() => import('@layouts/Header/Header.component'))
+const Header = dynamic(() => import('@layouts/Header/Header.component'))
 
-const App = () => {
-  const animation = useAnimate()
-
+export default function RootLayout({ children }: GlobalChildren) {
   return (
-    <Suspense fallback={<Loading center={true} />}>
-      <Grid
-        modifiers={['animate', animation]}
-        height={{ default: 'viewport-fullscreen' }}
-        rows={{ default: ['auto', 1, 'auto'] }}
-        columns={{ default: [1] }}
-      >
+    <html lang='en'>
+      <body>
         <Header />
-        ...
-      </Grid>
-    </Suspense>
+        {children && children}
+      </body>
+    </html>
   )
 }
-
-export default App
 ```

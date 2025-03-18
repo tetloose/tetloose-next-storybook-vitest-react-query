@@ -20,31 +20,32 @@ See [Workspaces](https://marketplace.visualstudio.com/items?itemName=Fooxly.work
 
 ## Features
 
-- Typescript
-- ViTest
-- SCSS modules
-- SCSS
-- React Router
+- Next.js
+- Storybook
 - React Query
+- ViTest
+- Typescript
+- SCSS modules
 
 ## Commands
 
-- `yarn setup` - Installs packages, setup husky and runs the app in development mode.
-- `yarn dev` - Runs the app in the development mode.
-- `yarn build` - Builds the app for production to the `build` folder.
-- `yarn test` - Launches the test runner in the interactive watch mode.
-- `yarn test:coverage` - Get test runner coverage stats.
-- `yarn test:clear-cache` - Clear test runner cache.
-- `yarn lint` - Lint js / scss.
-- `yarn lint:fix` - Lint js / scss and fix errors.
-- `yarn storybook` - Runs Storybook in the development mode.
+- `yarn setup` - Installs packages, sets up Husky and runs the app in development mode.
+- `yarn dev` - Runs the app in development mode using Turbopack and concurrently watches TypeScript, ESLint and Styles.
+- `yarn build` - Builds the app for production to the build folder.
+- `yarn start` - Starts the production server.
+- `yarn storybook` - Runs Storybook in development mode, concurrently watching TypeScript, ESLint and Styles.
 - `yarn build-storybook` - Builds Storybook for production.
-- `yarn git:commit` - Commit working branch, pomps for commit message.
-- `yarn gen:component` - Auto generates a component, follow steps in terminal.
+- `yarn test` - Launches the Vitest runner in interactive watch mode.
+- `yarn test:coverage` - Displays Vitest coverage statistics.
+- `yarn test:clear-cache` - Clears the Vitest cache.
+- `yarn lint` - Lints JavaScript/TypeScript and SCSS files.
+- `yarn lint:fix` - Lints and automatically fixes errors in JavaScript/TypeScript and SCSS files.
+- `yarn git:commit` - Commits the working branch and prompts for a commit message.
+- `yarn gen:component` - Automatically generates a component; follow the steps in the terminal.
 
 ## Setup
 
-1. `git clone git@github.com:tetloose/tetloose-react-ts-vite-storybook.git`
+1. `git clone git@github.com:tetloose/tetloose-next-storybook-vitest-react-query.git`
 2. `cmd shift p recommended` install recommended plugins
 3. `yarn setup`
 

@@ -21,25 +21,14 @@ import { Meta } from '@storybook/blocks'
 - **useHomeContent**
   Retrieves and provides the home page content.
 
-## Export
-
-`export default Home`
-
 ## Usage
 
-`src/routes/navigation.routes.tsx`
-
 ```tsx
-import { lazy } from 'react'
-import type { RouteObject } from 'react-router-dom'
+import dynamic from 'next/dynamic'
 
-const Home = lazy(() => import('@layouts/Home/Home.component'))
+const Home = dynamic(() => import('@layouts/Home/Home.component'))
 
-export const navigation: RouteObject[] = [
-  {
-    path: '/',
-    element: <Home />
-  },
-  ...
-]
+export default function HomePage() {
+  return <Home />
+}
 ```

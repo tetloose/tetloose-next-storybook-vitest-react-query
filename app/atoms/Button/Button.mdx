@@ -4,7 +4,7 @@ import { Meta } from '@storybook/blocks'
 
 # Button
 
-The **Button** component is a versatile UI element that can either render as a native `<button />` element or as a `<NavLink />` (from react-router-dom) when a to prop is provided. It supports custom variants, responsive styling, and additional modifiers for fine-tuning alignment, justification, and width.
+The **Button** component is a versatile UI element that can either render as a native `<button />` element or as a Next `<Link />` when a `to` prop is provided. It supports custom variants, responsive styling, and additional modifiers for fine-tuning alignment, justification, and width.
 
 ## Usage
 
@@ -52,7 +52,7 @@ import { Button } from '@atoms/Button/Button.component'
 
 - Type: `string`
 - Default: None
-- Description: When provided, the button is rendered as a `<NavLink />` for routing instead of a native button.
+- Description: When provided, the button is rendered as a `<Link />` for routing instead of a native button.
 
 ### modifiers
 
@@ -86,6 +86,6 @@ import { Button } from '@atoms/Button/Button.component'
 
 ### ...rest
 
-- Type: `ButtonHTMLAttributes<HTMLElement> | Omit<NavLinkProps, 'title' | 'to'>`
+- Type: `ButtonHTMLAttributes<HTMLElement> | Omit<LinkProps, 'title' | 'to'>`
 - Default: None
-- Description: Other native button attributes or NavLink props (except title and to).
+- Description: Other native button attributes or Link props (except title and to).
