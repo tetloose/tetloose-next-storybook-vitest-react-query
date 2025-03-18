@@ -1,3 +1,5 @@
+'use client'
+
 import { lazy } from 'react'
 
 const NotFound = lazy(() => import('@layouts/Not-found/Not-found.component'))

@@ -1,4 +1,5 @@
 import React from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import type { Preview } from '@storybook/react'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Notification } from '../app/components/Notification/Notification.component'
@@ -8,6 +9,7 @@ import {
   queryClient,
   QueryClientProvider
 } from '../app/hooks/Query/query-client.hooks'
+import { HandleBoundary } from '../app/layouts/Not-found/utils/Handle-boundary.util'
 import '../app/styles/app.scss'
 
 const preview: Preview = {
@@ -17,10 +19,12 @@ const preview: Preview = {
 
       return (
         <QueryClientProvider client={queryClient}>
-          <Notification />
-          <AppProvider>
-            <Story />
-          </AppProvider>
+          <ErrorBoundary FallbackComponent={HandleBoundary}>
+            <Notification />
+            <AppProvider>
+              <Story />
+            </AppProvider>
+          </ErrorBoundary>
           <ReactQueryDevtools position={'bottom'} initialIsOpen={false} />
         </QueryClientProvider>
       )

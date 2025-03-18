@@ -1,3 +1,4 @@
+import { ErrorBoundary } from 'react-error-boundary'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
@@ -7,6 +8,7 @@ import {
 } from '@hooks/Query/query-client.hooks'
 import { Notification } from '@components/Notification/Notification.component'
 import { Grid } from '@foundations/Grid/Grid.component'
+import { HandleBoundary } from '@layouts/Not-found/utils/Handle-boundary.util'
 import type { GlobalChildren } from '@global/global.types'
 import '@styles/app.scss'
 
@@ -23,16 +25,18 @@ export default function RootLayout({ children }: GlobalChildren) {
     <html lang='en'>
       <body>
         <QueryClientProvider client={queryClient}>
-          <Notification />
-          <Grid
-            height={{ default: 'viewport-fullscreen' }}
-            rows={{ default: ['auto', 1, 'auto'] }}
-            columns={{ default: [1] }}
-          >
-            <Header />
-            {children && children}
-            <Footer />
-          </Grid>
+          <ErrorBoundary FallbackComponent={HandleBoundary}>
+            <Notification />
+            <Grid
+              height={{ default: 'viewport-fullscreen' }}
+              rows={{ default: ['auto', 1, 'auto'] }}
+              columns={{ default: [1] }}
+            >
+              <Header />
+              {children && children}
+              <Footer />
+            </Grid>
+          </ErrorBoundary>
           <ReactQueryDevtools position={'bottom'} initialIsOpen={false} />
         </QueryClientProvider>
       </body>
