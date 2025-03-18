@@ -1,4 +1,4 @@
-# Tetloose Next Storybook Vitest React Query (WIP)
+# Tetloose Next Storybook Vitest React Query
 
 ## Recommended VSCode Extensions
 
