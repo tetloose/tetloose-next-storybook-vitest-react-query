@@ -5,14 +5,18 @@ import {
   queryClient,
   QueryClientProvider
 } from '@hooks/Query/query-client.hooks'
-import { Logo } from './Logo.component'
+import { NavLink } from './Nav-link.component'
 
-describe('Logo component', () => {
-  it('renders Logo component with a modifier', () => {
+describe('NavLink component', () => {
+  it('renders NavLink component with a modifier', () => {
     const { container } = render(
       <QueryClientProvider client={queryClient}>
         <AppProvider>
-          <Logo modifiers={['test-modifier']} />
+          <NavLink
+            modifiers={['test-modifier']}
+            to={'http://google.com'}
+            title={'NavLink'}
+          />
         </AppProvider>
       </QueryClientProvider>
     )

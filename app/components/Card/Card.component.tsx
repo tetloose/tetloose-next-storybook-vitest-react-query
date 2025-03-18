@@ -6,7 +6,7 @@ import { Typography } from '@foundations/Typography/Typography.component'
 import { Button } from '@atoms/Button/Button.component'
 import { Image } from '@atoms/Image/Image.component'
 import { Loading } from '@atoms/Loading/Loading.component'
-import { NavLink } from '@atoms/NavLink/NavLink.component'
+import { NavLink } from '@atoms/NavLink/Nav-link.component'
 import type { CardProps } from './Card.types'
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(

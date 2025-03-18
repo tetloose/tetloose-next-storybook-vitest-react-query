@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Image } from './Image.component'
 import Desktop from '@images/test/desktop.jpg'
 import Mobile from '@images/test/mobile.jpg'
-import Placeholder from '@images/test/Placeholder.jpg'
+import Placeholder from '@images/test/placeholder.jpg'
 import Tablet from '@images/test/tablet.jpg'
 
 const meta: Meta<typeof Image> = {
@@ -17,10 +17,10 @@ type Story = StoryObj<typeof Image>
 export const Cover16x9: Story = {
   args: {
     alt: 'Alt text',
-    desktop: Desktop,
-    tablet: Tablet,
-    mobile: Mobile,
-    placeholder: Placeholder,
+    desktop: Desktop.src,
+    tablet: Tablet.src,
+    mobile: Mobile.src,
+    placeholder: Placeholder.src,
     ratio: { default: '16x9' },
     position: { default: 'center-bottom' },
     size: { default: 'cover' }
@@ -30,10 +30,10 @@ export const Cover16x9: Story = {
 export const Contain16x9: Story = {
   args: {
     alt: 'Alt text',
-    desktop: Desktop,
-    tablet: Tablet,
-    mobile: Mobile,
-    placeholder: Placeholder,
+    desktop: Desktop.src,
+    tablet: Tablet.src,
+    mobile: Mobile.src,
+    placeholder: Placeholder.src,
     ratio: { default: '16x9' },
     position: { default: 'center-bottom' },
     size: { default: 'contain' }

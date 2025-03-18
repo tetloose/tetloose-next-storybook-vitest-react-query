@@ -24,10 +24,10 @@ type Story = StoryObj<typeof Card>
 export const Primary: Story = {
   args: {
     image: {
-      desktop: Desktop,
-      tablet: Tablet,
-      mobile: Mobile,
-      placeholder: Placeholder,
+      desktop: Desktop.src,
+      tablet: Tablet.src,
+      mobile: Mobile.src,
+      placeholder: Placeholder.src,
       alt: 'Image Alt Text',
       size: { default: 'cover' },
       position: { default: 'center' },

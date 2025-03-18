@@ -5,9 +5,10 @@
   "scripts": {
     "setup": "yarn && husky install && yarn dev",
     "turbopack": "next dev --turbopack",
-    "watch:ts": "chokidar 'app/**/*.{ts,tsx}' -c 'eslint \"app/**/*.{ts,tsx}\"'",
+    "watch:typescript": "tsc --noEmit --watch",
+    "watch:eslint": "chokidar 'app/**/*.{ts,tsx}' -c 'eslint \"app/**/*.{ts,tsx}\"'",
     "watch:styles": "chokidar 'app/**/*.{css,scss}' -c 'stylelint \"app/**/*.{css,scss}\"'",
-    "dev": "concurrently --names \"Turbopack,TS,Styles\" --prefix \"[{name}]\" --prefix-colors \"cyan,magenta,yellow\" \"yarn turbopack\" \"yarn watch:ts\" \"yarn watch:styles\"",
+    "dev": "concurrently --names \"Turbopack,TypeScript,Eslint,Styles\" --prefix \"[{name}]\" --prefix-colors \"cyan,green,magenta,yellow\" \"yarn turbopack\" \"yarn watch:typescript\" \"yarn watch:eslint\" \"yarn watch:styles\"",
     "lint": "eslint ./app && stylelint \"./app/**/*.scss\"",
     "lint:fix": "eslint ./app --fix && stylelint \"./app/**/*.scss\" --fix",
     "build": "next build",
@@ -16,9 +17,15 @@
     "test:coverage": "vitest --coverage",
     "gen:component": "bash toolkit generate-component",
     "git:commit": "bash toolkit git-commit",
-    "pre-commit": "yarn lint && yarn test run"
+    "pre-commit": "yarn lint && yarn test run",
+    "pattern-library": "storybook dev -p 6006",
+    "storybook": "concurrently --names \"Pattern-Library,TypeScript,Eslint,Styles\" --prefix \"[{name}]\" --prefix-colors \"cyan,green,magenta,yellow\" \"yarn pattern-library\" \"yarn watch:typescript\" \"yarn watch:eslint\" \"yarn watch:styles\"",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@storybook/addon-a11y": "^8.6.7",
+    "@storybook/addon-designs": "^8.1.0",
+    "@storybook/addon-links": "^8.6.7",
     "@tanstack/react-query": "^5.66.11",
     "@tanstack/react-query-devtools": "^5.66.11",
     "@testing-library/dom": "^10.4.0",
@@ -46,29 +53,40 @@
     "vitest-canvas-mock": "^0.3.3"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.6",
     "@eslint/eslintrc": "^3",
     "@eslint/js": "^9.21.0",
+    "@storybook/addon-essentials": "^8.6.7",
+    "@storybook/addon-interactions": "^8.6.7",
+    "@storybook/blocks": "^8.6.7",
+    "@storybook/nextjs": "^8.6.7",
+    "@storybook/react": "^8.6.7",
+    "@storybook/test": "^8.6.7",
     "@stylistic/stylelint-plugin": "^3.1.2",
     "@tanstack/eslint-plugin-query": "^5.66.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.25.0",
     "@typescript-eslint/parser": "^8.25.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "chokidar-cli": "^3.0.0",
     "eslint-config-next": "15.2.2",
     "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-storybook": "^0.11.6",
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "react-hook-form": "^7.54.2",
+    "storybook": "^8.6.7",
     "stylelint": "^16.15.0",
     "stylelint-config-standard": "^37.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
     "typescript": "^5",
-    "typescript-eslint": "^8.25.0"
+    "typescript-eslint": "^8.25.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "prettier": {
     "semi": false,
@@ -77,5 +95,10 @@
     "singleQuote": true,
     "jsxSingleQuote": true,
     "trailingComma": "none"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }

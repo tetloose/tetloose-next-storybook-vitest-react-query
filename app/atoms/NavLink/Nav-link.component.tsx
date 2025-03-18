@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import Link from 'next/link'
 import { Typography } from '@foundations/Typography/Typography.component'
-import type { NavLinkProps } from './NavLink.types'
+import type { NavLinkProps } from './Nav-link.types'
 
 export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
   (

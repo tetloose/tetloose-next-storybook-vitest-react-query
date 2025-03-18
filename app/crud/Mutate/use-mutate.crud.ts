@@ -39,7 +39,7 @@ export const useMutate = ({
     mutationFn: mutateData,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: queryKey || apiQueryKey[url]
+        queryKey: [queryKey || apiQueryKey[url]]
       })
     },
     onError: (error: HttpStatus) => {

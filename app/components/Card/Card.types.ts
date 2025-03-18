@@ -1,6 +1,6 @@
 import type { ContentButton } from '@atoms/Button/Button.types'
 import type { ImageContent } from '@atoms/Image/Image.types'
-import type { ContentLink } from '@atoms/NavLink/NavLink.types'
+import type { ContentLink } from '@atoms/NavLink/Nav-link.types'
 import type { GlobalModifiers } from '@global/global.types'
 
 export type CardProps = {

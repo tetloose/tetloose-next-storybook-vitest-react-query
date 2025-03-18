@@ -1,6 +1,6 @@
 import { Image } from '@atoms/Image/Image.component'
 import { Loading } from '@atoms/Loading/Loading.component'
-import { NavLink } from '@atoms/NavLink/NavLink.component'
+import { NavLink } from '@atoms/NavLink/Nav-link.component'
 import { useLogoContent } from './hooks/use-logo-content.hooks'
 import type { LogoProps } from './Logo.types'
 import styles from './Logo.module.scss'
