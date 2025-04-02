@@ -1,17 +1,11 @@
-import type { StorybookConfig } from '@storybook/nextjs'
-import { dirname, resolve } from 'path'
-import { fileURLToPath } from 'url'
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-const app = resolve(__dirname, '../app')
-const docs = resolve(__dirname, '../docs')
-
-const config: StorybookConfig = {
+/** @type {import('@storybook/nextjs').StorybookConfig} */
+const config = {
   stories: [
-    `${docs}/**/*.mdx`,
-    `${app}/**/*.mdx`,
-    `${app}/**/*.stories.@(ts|tsx)`
+    path.resolve(__dirname, '../docs/**/*.mdx'),
+    path.resolve(__dirname, '../app/**/*.mdx'),
+    path.resolve(__dirname, '../app/**/*.stories.@(ts|tsx)')
   ],
   addons: [
     '@storybook/addon-a11y',
@@ -37,14 +31,14 @@ const config: StorybookConfig = {
     autodocs: true
   },
   webpackFinal: async (config) => {
-    config.resolve = config.resolve || {}
+    config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      '@styles': resolve(__dirname, '../app/styles')
-    }
+      '@styles': path.resolve(__dirname, '../app/styles')
+    };
 
-    return config
+    return config;
   }
-}
+};
 
-export default config
+module.exports = config;
